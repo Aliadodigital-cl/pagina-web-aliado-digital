@@ -69,7 +69,7 @@ const heroBaseDescription = (
   "Webs rápidas, escalables y listas para crecer."
 ).replace(/\.$/, "");
 // "Desde cuánto" calculado desde la fuente única de precios.
-const heroDescription = `${heroBaseDescription}. Páginas web desde ${formatoCLP(setupDesde)} + IVA.`;
+const heroDescription = `${heroBaseDescription}. Páginas web desde ${formatoCLP(setupDesde)}\u00A0+\u00A0IVA.`;
 const primaryCta =
   hero?.primaryCta ??
   (value?.ctaLabel && value?.ctaHref

@@ -23,7 +23,7 @@ const lineas = [
       "Carga rápida en celular y SEO técnico",
       "Botón de WhatsApp y formulario conectados",
     ],
-    precio: `Desde ${formatoCLP(setupDesde)} + IVA`,
+    precio: `Desde ${formatoCLP(setupDesde)}\u00A0+\u00A0IVA`,
     precioNota: "Pago único",
     cta: { label: "Ver precios de páginas web", href: "/planes#setups" },
     secundario: { label: "Más sobre desarrollo web", href: "/desarrollo" },
@@ -41,7 +41,7 @@ const lineas = [
       "SEO local y Google Business Profile",
     ],
     precio: planCampanas
-      ? `${formatoCLP(planCampanas.precio)} / mes + IVA`
+      ? `${formatoCLP(planCampanas.precio)}\u00A0/\u00A0mes\u00A0+\u00A0IVA`
       : "",
     precioNota: planCampanas ? `Incluido en el plan ${planCampanas.nombre}` : "",
     cta: { label: "Ver planes mensuales", href: "/planes#mensuales" },
