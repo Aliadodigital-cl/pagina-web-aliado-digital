@@ -44,9 +44,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Sora"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        display: ['"Sora"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        sora: ['"Sora"', 'ui-sans-serif', 'system-ui', 'sans-serif']
+        sans: ['"Sora Variable"', '"Sora"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['"Sora Variable"', '"Sora"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sora: ['"Sora Variable"', '"Sora"', 'ui-sans-serif', 'system-ui', 'sans-serif']
       },
       colors: {
         surface: withOpacity("--color-surface"),

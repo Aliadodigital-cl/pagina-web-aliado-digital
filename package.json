@@ -25,6 +25,7 @@
     "@astrojs/react": "^4.4.2",
     "@astrojs/rss": "^4.0.19",
     "@astrojs/tailwind": "^6.0.2",
+    "@fontsource-variable/sora": "^5.3.0",
     "@iconify-json/lucide": "^1.2.82",
     "@iconify-json/mdi": "^1.2.3",
     "@iconify-json/simple-icons": "^1.2.63",
