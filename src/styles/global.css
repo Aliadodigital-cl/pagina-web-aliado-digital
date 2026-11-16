@@ -2,8 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* Fixed navbar height to avoid hero jumps when header styles change on scroll. */
+  --nav-h: 64px;
+  --hero-safe-gap: 10px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --hero-safe-offset: calc(var(--nav-h) + var(--safe-top) + var(--hero-safe-gap));
+}
+
+@media (max-width: 360px) {
+  :root {
+    --nav-h: 56px;
+    --hero-safe-gap: 8px;
+  }
+}
+
 body {
-  font-family: "Plus Jakarta Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-family: "Sora Variable", "Sora", system-ui, -apple-system, "Segoe UI", sans-serif;
   background-color: rgb(var(--color-surface));
   background-image: linear-gradient(180deg, rgb(var(--color-surface-strong) / 0.35), transparent 55%);
   color: rgb(var(--color-content));
@@ -15,7 +30,11 @@ html {
 }
 
 [id] {
-  scroll-margin-top: 96px;
+  scroll-margin-top: calc(var(--hero-safe-offset) + 1rem);
+}
+
+.hero-safe-offset {
+  padding-top: var(--hero-safe-offset);
 }
 
 .font-display {
@@ -44,26 +63,6 @@ a {
   background: rgb(var(--color-pill) / var(--alpha-pill));
   border: 1px solid rgb(var(--color-pill-border));
   color: rgb(var(--color-content));
-}
-
-.faq-answer {
-  overflow: hidden;
-  will-change: height, opacity, transform;
-}
-
-.faq-item[open] .faq-toggle {
-  transform: rotate(45deg);
-}
-
-[data-animate="reveal"] {
-  opacity: 0;
-  transform: translateY(30px) scale(0.98);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-[data-animate="reveal"].animate-visible {
-  opacity: 1;
-  transform: translateY(0) scale(1);
 }
 
 .prose {
@@ -149,4 +148,65 @@ a {
   .marquee__track.animate {
     animation: none;
   }
+}
+
+/* ---------------------------------------------------------------------------
+ * Cuerpo de los artículos del blog (MDX)
+ * ------------------------------------------------------------------------- */
+.article-body {
+  @apply text-[1.0625rem] leading-[1.8] text-content/90;
+}
+.article-body > * + * {
+  @apply mt-5;
+}
+.article-body h2 {
+  @apply mt-14 scroll-mt-28 text-2xl font-bold leading-tight tracking-tight text-content sm:text-3xl;
+}
+.article-body h3 {
+  @apply mt-10 scroll-mt-28 text-xl font-semibold leading-snug text-content;
+}
+.article-body h2 + *,
+.article-body h3 + * {
+  @apply mt-4;
+}
+.article-body a:not(.not-prose *) {
+  @apply font-medium text-accent underline decoration-accent/30 underline-offset-4 transition hover:decoration-accent dark:text-highlight dark:decoration-highlight/30;
+}
+.article-body strong {
+  @apply font-semibold text-content;
+}
+.article-body ul:not(.not-prose *),
+.article-body ol:not(.not-prose *) {
+  @apply space-y-2 pl-6;
+}
+.article-body ul {
+  @apply list-disc marker:text-accent dark:marker:text-highlight;
+}
+.article-body ol {
+  @apply list-decimal marker:font-semibold marker:text-muted;
+}
+.article-body li > ul,
+.article-body li > ol {
+  @apply mt-2;
+}
+.article-body blockquote {
+  @apply rounded-r-xl border-l-4 border-primary/60 bg-primary/5 px-5 py-4 text-content;
+}
+.article-body blockquote p {
+  @apply m-0;
+}
+.article-body hr {
+  @apply my-12 border-border/70;
+}
+.article-body code {
+  @apply rounded bg-surface-strong px-1.5 py-0.5 text-[0.9em];
+}
+.article-body table {
+  @apply block w-full overflow-x-auto border-collapse text-left text-[0.95rem];
+}
+.article-body th {
+  @apply border-b border-border/70 bg-surface-strong/60 px-4 py-3 font-semibold text-content;
+}
+.article-body td {
+  @apply border-b border-border/50 px-4 py-3 align-top;
 }

@@ -8,11 +8,6 @@
     "secondaryCTA": "Ver servicios",
     "socialLinks": [
       {
-        "name": "GitHub",
-        "url": "https://github.com/Aliadodigital-cl",
-        "icon": "simple-icons:github"
-      },
-      {
         "name": "Instagram",
         "url": "https://www.instagram.com/aliadodigital.cl/",
         "icon": "simple-icons:instagram"
@@ -27,32 +22,24 @@
   },
   "navLinks": [
     {
-      "href": "/#inicio",
-      "label": "Inicio"
-    },
-    {
       "href": "/#servicios",
       "label": "Servicios"
     },
     {
-      "href": "/desarrollo",
-      "label": "Desarrollo"
+      "href": "/planes",
+      "label": "Planes"
     },
     {
-      "href": "/marketing",
-      "label": "Marketing"
+      "href": "/casos",
+      "label": "Casos"
     },
     {
-      "href": "/#casos-de-exito",
-      "label": "Casos de éxito"
+      "href": "/blog",
+      "label": "Blog"
     },
     {
       "href": "/#nosotros",
       "label": "Nosotros"
-    },
-    {
-      "href": "/#faq",
-      "label": "Preguntas"
     },
     {
       "href": "/#contacto",
@@ -79,7 +66,6 @@
       ],
       "delivery_time": "7 días hábiles",
       "modality": "Proyecto",
-      "price": "$160.000 CLP",
       "ctaType": "form",
       "guarantee": "Incluye una ronda de ajustes luego del primer feedback.",
       "top_banner": "Ideal para empezar",
@@ -109,7 +95,6 @@
       ],
       "delivery_time": "10 días hábiles",
       "modality": "Proyecto",
-      "price": "$250.000 CLP",
       "ctaType": "form",
       "guarantee": "Incluye una ronda de ajustes luego del primer feedback y soporte inicial para resolver dudas.",
       "top_banner": "Más solicitado",
@@ -136,7 +121,6 @@
       ],
       "delivery_time": "Según alcance del proyecto",
       "modality": "Proyecto",
-      "price": "$350.000 CLP",
       "ctaType": "form",
       "guarantee": "Incluye etapa de análisis y validación antes del desarrollo.",
       "order": 4,
@@ -166,7 +150,6 @@
       ],
       "delivery_time": "5 días hábiles",
       "modality": "Proyecto",
-      "price": "$120.000 CLP",
       "ctaType": "whatsapp",
       "guarantee": "Incluye revisión y correcciones finales.",
       "order": 7,
@@ -217,7 +200,6 @@
       ],
       "delivery_time": "5 días hábiles",
       "modality": "Mensual",
-      "price": "$180.000 CLP",
       "ctaType": "whatsapp",
       "guarantee": "Incluye optimización inicial y ajustes de segmentación.",
       "top_banner": "Tracción en redes",
@@ -247,7 +229,6 @@
       ],
       "delivery_time": "7 días hábiles",
       "modality": "Mensual",
-      "price": "$200.000 CLP",
       "ctaType": "whatsapp",
       "guarantee": "Incluye calibración inicial de conversiones.",
       "top_banner": "Demanda activa",
@@ -277,7 +258,6 @@
       ],
       "delivery_time": "10 días hábiles",
       "modality": "Mensual",
-      "price": "$140.000 CLP",
       "ctaType": "whatsapp",
       "guarantee": "Incluye ajustes de tono y estilo visual.",
       "top_banner": "Marca activa",
@@ -307,7 +287,6 @@
       ],
       "delivery_time": "12 días hábiles",
       "modality": "Proyecto + Mensual",
-      "price": "$260.000 CLP",
       "ctaType": "whatsapp",
       "guarantee": "Incluye ajustes iniciales del funnel.",
       "top_banner": "Estrategia completa",
@@ -337,7 +316,6 @@
       ],
       "delivery_time": "14 días hábiles",
       "modality": "Proyecto + Mensual",
-      "price": "$450.000 CLP",
       "ctaType": "whatsapp",
       "guarantee": "Incluye ajustes de la landing y optimización inicial.",
       "top_banner": "Combo recomendado",
@@ -355,6 +333,7 @@
       "city": "Ovalle",
       "summary": "Landing page profesional y personalizada para una clínica dental en Ovalle, creada para reforzar su presencia digital con una imagen premium, clara y confiable.",
       "coverImage": "/images/portfolio/cases/clinica-montblanc.webp",
+      "coverImageMobile": "/images/portfolio/cases/clinica-montblanc-movil.webp",
       "beforeTitle": "Antes",
       "afterTitle": "Después",
       "beforePoints": [
@@ -391,7 +370,9 @@
       "ctaPrimaryLabel": "Quiero una landing premium",
       "siteUrl": "https://clinicamontblanc.cl",
       "order": 1,
-      "featured": true
+      "featured": true,
+      "service": "Landing page",
+      "logo": "/images/logos/montblanc.webp"
     },
     {
       "slug": "propiedades-arenas",
@@ -401,6 +382,7 @@
       "city": "La Serena / Coquimbo",
       "summary": "Primera fase de digitalización para una corredora de propiedades: diseñamos una landing premium que funciona como vitrina digital, con catálogo ordenado, búsqueda con filtros y llamados a la acción visibles para convertir visitas en consultas reales.",
       "coverImage": "/images/portfolio/cases/propiedades-arenas.webp",
+      "coverImageMobile": "/images/portfolio/cases/propiedades-arenas-movil.webp",
       "beforeTitle": "Antes",
       "afterTitle": "Después",
       "beforePoints": [
@@ -449,7 +431,9 @@
       "ctaPrimaryLabel": "Quiero una vitrina inmobiliaria",
       "siteUrl": "https://propiedadesarenas.cl",
       "order": 2,
-      "featured": true
+      "featured": true,
+      "service": "Landing page",
+      "logo": "/images/logos/propiedades-arenas.webp"
     },
     {
       "slug": "ansar",
@@ -460,10 +444,10 @@
       "summary": "Ejecutamos un servicio de impulso digital para Ansar con publicaciones en redes sociales, estrategia, contenido y campañas de Meta Ads, logrando un promedio de 80 a 160+ clientes potenciales que escribieron por redes sociales.",
       "coverImage": "/images/marketing/ansar/img.webp",
       "beforeTitle": "Antes",
-      "afterTitle": "Despues",
+      "afterTitle": "Después",
       "beforePoints": [
         {
-          "text": "Publicaciones sin una linea estrategica continua",
+          "text": "Publicaciones sin una línea estratégica continua",
           "tone": "warning"
         },
         {
@@ -487,7 +471,7 @@
       ],
       "impactTags": [
         {
-          "text": "Mas conversaciones calificadas",
+          "text": "Más conversaciones calificadas",
           "variant": "green"
         },
         {
@@ -503,7 +487,15 @@
       "ctaPrimaryLabel": "Quiero impulsar mis redes con estrategia",
       "siteUrl": "https://www.instagram.com/ansarautomotriz/",
       "order": 3,
-      "featured": true
+      "featured": true,
+      "service": "Marketing digital",
+      "headline": "Un promedio de 80 a 160+ clientes potenciales escribiendo por redes sociales",
+      "impactMetrics": [
+        {
+          "label": "Clientes potenciales que escribieron por redes (promedio)",
+          "value": "80–160+"
+        }
+      ]
     },
     {
       "slug": "dr-harald-ziller",
@@ -511,10 +503,11 @@
       "title": "Plan mixto: desarrollo web y presencia digital",
       "industry": "Salud",
       "city": "Ovalle",
-      "summary": "Plan mixto que incluyo desarrollo de página web y mejora de presencia digital en redes sociales, con creacion de cuenta de Google, implementacion de WhatsApp Business, optimizacion de LinkedIn y contenido para fortalecer su posicionamiento online.",
+      "summary": "Plan mixto que incluyó desarrollo de página web y mejora de presencia digital en redes sociales, con creación de cuenta de Google, implementación de WhatsApp Business, optimización de LinkedIn y contenido para fortalecer su posicionamiento online.",
       "coverImage": "/images/portfolio/cases/haraldziller.webp",
+      "coverImageMobile": "/images/portfolio/cases/haraldziller-movil.webp",
       "beforeTitle": "Antes",
-      "afterTitle": "Despues",
+      "afterTitle": "Después",
       "beforePoints": [
         {
           "text": "Presencia digital dispersa y sin una estrategia unificada",
@@ -525,21 +518,21 @@
           "tone": "danger"
         },
         {
-          "text": "Contenido poco consistente para sostener comunicacion en redes",
+          "text": "Contenido poco consistente para sostener comunicación en redes",
           "tone": "warning"
         }
       ],
       "afterPoints": [
         {
-          "text": "Pagina web profesional desarrollada como base de su presencia digital",
+          "text": "Página web profesional desarrollada como base de su presencia digital",
           "tone": "success"
         },
         {
-          "text": "Implementacion de Google, WhatsApp Business y optimizacion de perfil en LinkedIn",
+          "text": "Implementación de Google, WhatsApp Business y optimización de perfil en LinkedIn",
           "tone": "success"
         },
         {
-          "text": "Plan de contenido y mejoras en redes sociales con enfoque de presencia y conversion",
+          "text": "Plan de contenido y mejoras en redes sociales con enfoque de presencia y conversión",
           "tone": "success"
         }
       ],
@@ -561,21 +554,24 @@
       "ctaPrimaryLabel": "Quiero un plan mixto para mi consulta",
       "siteUrl": "https://drharaldziller.cl/",
       "order": 4,
-      "featured": false
+      "featured": false,
+      "service": "Web + presencia digital",
+      "logo": "/images/logos/dr-harald-ziller.webp"
     },
     {
       "slug": "muebleria-el-fiorentino",
-      "clientName": "Muebleria El Fiorentino",
-      "title": "Pagina web para iniciar presencia digital y mostrar muebles a medida",
-      "industry": "Muebleria",
+      "clientName": "Mueblería El Fiorentino",
+      "title": "Página web para iniciar presencia digital y mostrar muebles a medida",
+      "industry": "Mueblería",
       "city": "Punitaqui",
-      "summary": "Desarrollamos su primera página web para que la muebleria pudiera comenzar con presencia digital, mostrar su empresa y exhibir sus muebles a medida con un catalogo claro, CTA directos por WhatsApp y mejor visibilidad local en la Region de Coquimbo.",
+      "summary": "Desarrollamos su primera página web para que la mueblería pudiera comenzar con presencia digital, mostrar su empresa y exhibir sus muebles a medida con un catálogo claro, CTA directos por WhatsApp y mejor visibilidad local en la Región de Coquimbo.",
       "coverImage": "/images/portfolio/cases/fiorentino.webp",
+      "coverImageMobile": "/images/portfolio/cases/fiorentino-movil.webp",
       "beforeTitle": "Antes",
-      "afterTitle": "Despues",
+      "afterTitle": "Después",
       "beforePoints": [
         {
-          "text": "No tenian sitio web para presentar la muebleria y sus trabajos",
+          "text": "No tenían sitio web para presentar la mueblería y sus trabajos",
           "tone": "warning"
         },
         {
@@ -583,7 +579,7 @@
           "tone": "danger"
         },
         {
-          "text": "Costaba mostrar catalogo, proceso y confianza a nuevos clientes",
+          "text": "Costaba mostrar catálogo, proceso y confianza a nuevos clientes",
           "tone": "warning"
         }
       ],
@@ -593,15 +589,15 @@
           "tone": "success"
         },
         {
-          "text": "Catalogo organizado por categorias para facilitar la eleccion del mueble",
+          "text": "Catálogo organizado por categorías para facilitar la elección del mueble",
           "tone": "success"
         },
         {
-          "text": "CTA de cotizacion por WhatsApp y mejor canal de contacto para conversion",
+          "text": "CTA de cotización por WhatsApp y mejor canal de contacto para conversión",
           "tone": "success"
         },
         {
-          "text": "Refuerzo de confianza con trayectoria (+20 anos), ubicacion en Punitaqui y marcas que los avalan",
+          "text": "Refuerzo de confianza con trayectoria (+20 años), ubicación en Punitaqui y marcas que los avalan",
           "tone": "success"
         }
       ],
@@ -611,11 +607,11 @@
           "variant": "green"
         },
         {
-          "text": "Catalogo mas claro y navegable",
+          "text": "Catálogo más claro y navegable",
           "variant": "blue"
         },
         {
-          "text": "Mas consultas por WhatsApp",
+          "text": "Más consultas por WhatsApp",
           "variant": "orange"
         }
       ],
@@ -623,7 +619,9 @@
       "ctaPrimaryLabel": "Quiero una web para mi negocio",
       "siteUrl": "https://elfiorentino.vercel.app/",
       "order": 5,
-      "featured": true
+      "featured": true,
+      "service": "Página web",
+      "logo": "/images/logos/muebleria-florentino.webp"
     },
     {
       "slug": "el-arlequin",
@@ -631,39 +629,39 @@
       "title": "Sistema de pedidos administrable",
       "industry": "Gastronomia",
       "city": null,
-      "summary": "Disenamos una plataforma integral de pedidos para profesionalizar la operacion de El Arlequin. El sistema esta pensado para el meson y el ejecutivo de venta, con administracion completa de catalogo, clientes y zonas de despacho, ademas de un configurador avanzado de productos.",
+      "summary": "Diseñamos una plataforma integral de pedidos para profesionalizar la operación de El Arlequin. El sistema está pensado para el mesón y el ejecutivo de venta, con administración completa de catálogo, clientes y zonas de despacho, además de un configurador avanzado de productos.",
       "coverImage": "/images/portfolio/cases/el-arlequin.webp",
       "beforeTitle": "Antes",
-      "afterTitle": "Despues",
+      "afterTitle": "Después",
       "beforePoints": [
         {
           "text": "Toma y seguimiento de pedidos con procesos manuales, con riesgo de errores y tiempos de respuesta altos",
           "tone": "warning"
         },
         {
-          "text": "Catalogo dificil de mantener: productos con multiples tamanos, personalizaciones y extras sin control centralizado",
+          "text": "Catálogo difícil de mantener: productos con múltiples tamaños, personalizaciones y extras sin control centralizado",
           "tone": "danger"
         },
         {
-          "text": "Despacho y calculo de envio sin zonificacion formal, afectando la consistencia del cobro y la atencion",
+          "text": "Despacho y cálculo de envio sin zonificación formal, afectando la consistencia del cobro y la atención",
           "tone": "warning"
         }
       ],
       "afterPoints": [
         {
-          "text": "Flujo unificado para meson y ventas: creacion, administracion y seguimiento de pedidos desde un solo panel",
+          "text": "Flujo unificado para mesón y ventas: creación, administración y seguimiento de pedidos desde un solo panel",
           "tone": "success"
         },
         {
-          "text": "Backoffice administrable: gestion de productos, clientes y reglas de despacho con control y trazabilidad",
+          "text": "Backoffice administrable: gestión de productos, clientes y reglas de despacho con control y trazabilidad",
           "tone": "success"
         },
         {
-          "text": "Zonas de reparto configurables con calculo automatico de envio para estandarizar la operacion",
+          "text": "Zonas de reparto configurables con cálculo automático de envio para estandarizar la operación",
           "tone": "success"
         },
         {
-          "text": "Configurador avanzado: productos con mas de un tamano, ingredientes adicionales y creador de pizzas con precios dinamicos",
+          "text": "Configurador avanzado: productos con más de un tamaño, ingredientes adicionales y creador de pizzas con precios dinámicos",
           "tone": "success"
         }
       ],
@@ -673,7 +671,7 @@
           "variant": "green"
         },
         {
-          "text": "Gestion centralizada",
+          "text": "Gestión centralizada",
           "variant": "blue"
         },
         {
@@ -681,14 +679,15 @@
           "variant": "orange"
         },
         {
-          "text": "Personalizacion avanzada",
+          "text": "Personalización avanzada",
           "variant": "purple"
         }
       ],
       "ctaPrimaryType": "contact",
       "ctaPrimaryLabel": "Quiero una plataforma de pedidos",
       "siteUrl": null,
-      "order": 6
+      "order": 6,
+      "service": "Sistema a medida"
     }
   ],
   "reviews": [
@@ -722,7 +721,7 @@
     },
     {
       "question": "¿Cuánto cuesta un sitio web?",
-      "answer": "Depende del alcance. Una landing de captación parte desde $220.000. Sitios con reservas o pagos desde $380.000. Automatizaciones (WhatsApp + CRM) desde $260.000. Mantención TI desde $160.000/mes. Apenas entendemos lo que necesitas, te enviamos una cotización clara y sin letra chica.",
+      "answer": "Nuestros precios están publicados en la página de Planes: páginas web con pago único y planes mensuales para mantenerlas, aparecer en Google y conseguir más consultas. Todo se expresa en valores netos más IVA. Si tu proyecto necesita algo fuera de esos planes, te enviamos una cotización clara antes de empezar.",
       "order": 2
     },
     {
@@ -742,7 +741,7 @@
     },
     {
       "question": "¿Qué pasa después del lanzamiento? ¿Dan soporte?",
-      "answer": "Sí. En todos los proyectos incluimos una ronda de ajustes post-lanzamiento. Después seguimos disponibles por WhatsApp y correo (respuesta dentro de 24h hábiles). Si necesitas soporte continuo, parches de seguridad y monitoreo, tenemos mantención mensual desde $160.000.",
+      "answer": "Sí. En todos los proyectos incluimos una ronda de ajustes post-lanzamiento. Después seguimos disponibles por WhatsApp y correo (respuesta dentro de 24h hábiles). Si necesitas soporte continuo, parches de seguridad y monitoreo, el plan mensual Presencia lo incluye (revisa los precios en la página de Planes).",
       "order": 6
     },
     {
@@ -765,32 +764,12 @@
     "privacidad": {
       "slug": "privacidad",
       "title": "Política de Privacidad",
-      "content": "Usamos tu información para responder solicitudes y prestar el servicio. No vendemos datos. Puedes pedir eliminación escribiendo a contacto@nortechdigital.cl."
+      "content": "Usamos tu información para responder solicitudes y prestar el servicio. No vendemos datos. Puedes pedir eliminación escribiendo a contacto@aliadodigital.cl."
     },
     "terminos": {
       "slug": "terminos",
       "title": "Términos y Condiciones",
       "content": "Las propuestas se cotizan en CLP. Se paga 50% al inicio y 50% contra entrega. Hosting administrado se factura mes a mes. Ajustes fuera de alcance se cotizan aparte."
     }
-  },
-  "posts": [
-    {
-      "slug": "performance-landing",
-      "title": "Lista de verificación para lanzar una página que convierta",
-      "excerpt": "Pasos clave para salir a producción con performance y medición desde el día uno.",
-      "content": "Define una oferta clara, valida el copy con clientes, implementa analytics y mapas de calor, y prepara variantes para test A/B.",
-      "createdAt": "2025-01-10T00:00:00.000Z",
-      "updatedAt": "2025-01-10T00:00:00.000Z",
-      "publishedAt": "2025-01-10T00:00:00.000Z"
-    },
-    {
-      "slug": "automatizar-whatsapp",
-      "title": "Cómo automatizar WhatsApp sin perder el tono humano",
-      "excerpt": "Flujos que responden rápido y saben cuándo escalar a un agente.",
-      "content": "Define mensajes de bienvenida, FAQs y derivaciones. Usa horarios para respuestas diferidas y mide el tiempo a primer contacto humano.",
-      "createdAt": "2025-01-12T00:00:00.000Z",
-      "updatedAt": "2025-01-12T00:00:00.000Z",
-      "publishedAt": "2025-01-12T00:00:00.000Z"
-    }
-  ]
+  }
 }

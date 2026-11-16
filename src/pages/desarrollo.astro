@@ -1,12 +1,11 @@
-﻿---
+---
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/layout/Navbar.astro";
 import Footer from "../components/layout/Footer.astro";
 import SectionDivider from "../components/layout/SectionDivider.astro";
 import WhatsAppFloatingButton from "../components/layout/WhatsAppFloatingButton.astro";
-import HeroBackgroundSlideshow from "../components/hero/HeroBackgroundSlideshow.tsx";
-import GoogleG from "../components/ui/GoogleG.astro";
-import ServicesSection from "../components/sections/ServicesSection.astro";
+import HeroBackgroundSlideshow from "../components/hero/HeroBackgroundSlideshow.astro";
+import PlansSection from "../components/development/PlansSection.astro";
 import ProcessSection from "../components/sections/ProcessSection.astro";
 import CasesSection from "../components/sections/CasesSection.astro";
 import PortfolioMarqueeSection from "../components/sections/PortfolioMarqueeSection.tsx";
@@ -17,6 +16,8 @@ import { fetchSiteSettings, fetchServices, fetchCases } from "../lib/api/service
 import type { CaseStudy, Content, DevelopmentPageContent } from "../lib/api/types";
 import contentJson from "../data/content.json";
 import developmentJson from "../data/pages/development.json";
+import { setups, setupsComoTarjetas, formatoCLP } from "../data/planes";
+import { buildWhatsAppLink } from "../lib/utils";
 import developmentCasesJson from "../data/pages/development-cases.json";
 import developmentClientsJson from "../data/pages/development-clients.json";
 import { env } from "../lib/env";
@@ -32,7 +33,7 @@ const developmentClients = developmentClientsJson as {
   companies?: Company[];
 };
 
-const { hero, trust, cta, seo, value } = developmentContent;
+const { hero, trust, cta, seo, value, plansSection } = developmentContent;
 const pageTitle =
   seo?.title ?? "Desarrollo Web y Software para Pymes | Aliado Digital";
 const pageDescription =
@@ -59,10 +60,16 @@ const slides =
 const heroEyebrow = value?.eyebrow ?? "PROPUESTA DE VALOR";
 const heroHeading =
   hero?.title ?? value?.title ?? "Desarrollo web y software a medida para pymes.";
-const heroDescription =
+const setupDesde = Math.min(
+  ...setups.flatMap((setup) => (setup.precio ? [setup.precio] : [])),
+);
+const heroBaseDescription = (
   hero?.subtitle ??
   value?.description ??
-  "Webs rápidas, escalables y listas para crecer.";
+  "Webs rápidas, escalables y listas para crecer."
+).replace(/\.$/, "");
+// "Desde cuánto" calculado desde la fuente única de precios.
+const heroDescription = `${heroBaseDescription}. Páginas web desde ${formatoCLP(setupDesde)} + IVA.`;
 const primaryCta =
   hero?.primaryCta ??
   (value?.ctaLabel && value?.ctaHref
@@ -114,7 +121,7 @@ const canonical = Astro.url
   : siteUrl
     ? new URL("/desarrollo", siteUrl).toString()
     : undefined;
-const logoUrl = siteUrl ? new URL("/logo.png", siteUrl).toString() : undefined;
+const logoUrl = siteUrl ? new URL("/logo.svg", siteUrl).toString() : undefined;
 const provider = {
   "@type": "Organization",
   name: siteSettings.siteName,
@@ -191,11 +198,10 @@ const breadcrumbSchema = {
     forceTransparent
   />
   <main class="overflow-x-hidden">
-    <section id="desarrollo-hero" class="relative min-h-screen overflow-hidden">
+    <section id="desarrollo-hero" class="relative min-h-[100svh] overflow-hidden">
       <div class="absolute inset-0 z-0">
         {slides.length > 0 ? (
           <HeroBackgroundSlideshow
-            client:load
             slides={slides}
             intervalMs={7000}
             transitionMs={1200}
@@ -206,7 +212,7 @@ const breadcrumbSchema = {
       <div class="absolute inset-0 z-10 bg-gradient-to-t from-black/70 via-black/50 to-transparent"></div>
       <div class="absolute inset-0 z-10 backdrop-blur-[2px]"></div>
 
-      <div class="section-shell relative z-20 flex min-h-screen items-center py-24 sm:py-28 lg:py-32">
+      <div class="hero-safe-offset section-shell relative z-20 flex min-h-[100svh] items-center pb-24 sm:pb-28 lg:pb-32">
         <div class="grid w-full gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
           <div class="space-y-5" data-reveal="fade-up">
             {heroEyebrow ? (
@@ -227,10 +233,9 @@ const breadcrumbSchema = {
                   <a
                     href={primaryCta.href}
                     target={isExternalCta ? "_blank" : undefined}
-                    rel={isExternalCta ? "noreferrer" : undefined}
+                    rel={isExternalCta ? "noopener noreferrer" : undefined}
                     class="inline-flex w-full min-w-[240px] items-center justify-center gap-2 rounded-full bg-white px-7 py-3 text-sm font-semibold text-slate-900 shadow-lg shadow-black/20 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/90 sm:w-auto sm:min-w-[260px]"
                   >
-                    <GoogleG size={16} />
                     <span>{primaryCta.label}</span>
                   </a>
                   <a
@@ -253,15 +258,20 @@ const breadcrumbSchema = {
             <div class="grid gap-4 sm:gap-6">
               {items.map((item) => {
                 const labelText = (item.label ?? item.title ?? "").toLowerCase();
+                const normalizedLabelText = labelText
+                  .normalize("NFD")
+                  .replace(/[\u0300-\u036f]/g, "")
+                  .replace(/[^a-z0-9\s]/g, "")
+                  .replace(/\s+/g, " ")
+                  .trim();
                 const isGeneric =
-                  labelText.includes("sin sistema") ||
-                  labelText.includes("sin base") ||
-                  labelText.includes("genérico") ||
-                  labelText.includes("generico");
+                  normalizedLabelText.includes("sin sistema") ||
+                  normalizedLabelText.includes("sin base") ||
+                  normalizedLabelText.includes("generico");
                 const isCustom =
-                  labelText.includes("con método") ||
-                  labelText.includes("con metodo") ||
-                  labelText.includes("a medida");
+                  normalizedLabelText.includes("con método") ||
+                  normalizedLabelText.includes("con mtodo") ||
+                  normalizedLabelText.includes("a medida");
 
                 const cardTone = isGeneric
                   ? "border-rose-300/50 bg-rose-500/25 hover:border-rose-200/80"
@@ -318,10 +328,22 @@ const breadcrumbSchema = {
     <SectionDivider tone="accent" />
 
     <div id="planes" aria-hidden="true"></div>
-    <ServicesSection
-      services={servicesForPage}
-      whatsappNumber={siteSettings.whatsappNumber}
+    <PlansSection
+      title={plansSection?.title ?? "Planes de desarrollo y tecnología"}
+      description={
+        plansSection?.description ??
+        "Selecciona la solución que necesitas hoy y te acompañamos en cada etapa."
+      }
+      plans={setupsComoTarjetas(
+        (mensaje) =>
+          buildWhatsAppLink(siteSettings.whatsappNumber, mensaje) ??
+          "#contacto-desarrollo",
+      )}
     />
+    <p class="section-shell -mt-12 mb-12 text-center text-sm text-muted lg:-mt-20">
+      ¿Quieres mantenimiento, Google y campañas después del lanzamiento?
+      <a class="font-semibold text-accent hover:underline dark:text-highlight" href="/planes">Ver planes mensuales</a>
+    </p>
 
     <SectionDivider />
 

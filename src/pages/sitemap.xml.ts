@@ -1,5 +1,8 @@
 import { env } from "../lib/env";
-import { fetchAllPosts, fetchCases, fetchPostsPage, fetchServices } from "../lib/api/services";
+import { fetchCases, fetchServices } from "../lib/api/services";
+import { obtenerPosts } from "../lib/blog";
+import { categoriasBlog } from "../data/blog";
+import { CITY_LANDINGS } from "../config/cities";
 
 const SITE_URL = (env.siteUrl || import.meta.env.SITE || "https://aliadodigital.cl").replace(/\/$/, "");
 
@@ -17,10 +20,18 @@ const toIsoDate = (value?: string): string | undefined => {
   return date.toISOString();
 };
 
+/**
+ * Astro builds to directories, so every canonical URL ends in a slash. The
+ * sitemap has to match: listing /desarrollo instead of /desarrollo/ sends
+ * Googlebot through a redirect on every entry and contradicts the canonical
+ * tag on the page it lands on.
+ */
+const withTrailingSlash = (path: string) => (path.endsWith("/") ? path : `${path}/`);
+
 const buildUrl = (entry: SitemapEntry) => {
   const lastmodTag = entry.lastmod ? `\n  <lastmod>${entry.lastmod}</lastmod>` : "";
   return `<url>
-  <loc>${SITE_URL}${entry.path}</loc>${lastmodTag}
+  <loc>${SITE_URL}${withTrailingSlash(entry.path)}</loc>${lastmodTag}
   <changefreq>${entry.changefreq}</changefreq>
   <priority>${entry.priority}</priority>
 </url>`;
@@ -30,17 +41,28 @@ export async function GET() {
   const staticRoutes: SitemapEntry[] = [
     { path: "/", changefreq: "weekly", priority: "1.0" },
     { path: "/marketing", changefreq: "weekly", priority: "0.9" },
+    { path: "/planes", changefreq: "monthly", priority: "0.9" },
+    { path: "/casos", changefreq: "monthly", priority: "0.8" },
     { path: "/desarrollo", changefreq: "weekly", priority: "0.9" },
     { path: "/blog", changefreq: "weekly", priority: "0.7" },
     { path: "/privacidad", changefreq: "yearly", priority: "0.3" },
-    { path: "/terminos", changefreq: "yearly", priority: "0.3" }
+    { path: "/terminos", changefreq: "yearly", priority: "0.3" },
+    { path: "/informacion-legal", changefreq: "yearly", priority: "0.3" },
+    { path: "/eliminacion-de-datos", changefreq: "yearly", priority: "0.3" }
   ];
 
-  const [services, cases, postsPage, posts] = await Promise.all([
+  // Derived from the same config the pages are built from, so a new city can
+  // never end up live but missing from the sitemap.
+  const cityRoutes: SitemapEntry[] = CITY_LANDINGS.map((entry) => ({
+    path: `/diseno-web-${entry.slug}`,
+    changefreq: "monthly",
+    priority: "0.8"
+  }));
+
+  const [services, cases, posts] = await Promise.all([
     fetchServices(),
     fetchCases(),
-    fetchPostsPage({ page: 1, pageSize: 6 }),
-    fetchAllPosts({ pageSize: 100 })
+    obtenerPosts()
   ]);
 
   const serviceRoutes: SitemapEntry[] = services
@@ -59,30 +81,29 @@ export async function GET() {
       priority: "0.8"
     }));
 
-  const postRoutes: SitemapEntry[] = posts
-    .filter((post) => Boolean(post.slug))
-    .map((post) => ({
-      path: `/blog/${post.slug}`,
-      changefreq: "weekly",
-      priority: "0.7",
-      lastmod: toIsoDate(post.updatedAt || post.publishedAt || post.createdAt)
-    }));
+  const postRoutes: SitemapEntry[] = posts.map((post) => ({
+    path: `/blog/${post.id}`,
+    changefreq: "monthly",
+    priority: "0.7",
+    lastmod: toIsoDate((post.data.updatedDate ?? post.data.pubDate).toISOString())
+  }));
 
-  const pageCount = Math.max(1, postsPage.pagination.pageCount ?? 1);
-  const blogPaginationRoutes: SitemapEntry[] = Array.from({ length: pageCount }, (_, index) => index + 1)
-    .filter((pageNumber) => pageNumber > 1)
-    .map((pageNumber) => ({
-      path: `/blog/${pageNumber}`,
+  // Solo categorías con artículos publicados (las vacías no generan página).
+  const categoryRoutes: SitemapEntry[] = categoriasBlog
+    .filter((categoria) => posts.some((post) => post.data.category === categoria.slug))
+    .map((categoria) => ({
+      path: `/blog/categoria/${categoria.slug}`,
       changefreq: "weekly",
       priority: "0.5"
     }));
 
   const urls = [
     ...staticRoutes,
+    ...cityRoutes,
     ...serviceRoutes,
     ...caseRoutes,
     ...postRoutes,
-    ...blogPaginationRoutes
+    ...categoryRoutes
   ]
     .map(buildUrl)
     .join("");

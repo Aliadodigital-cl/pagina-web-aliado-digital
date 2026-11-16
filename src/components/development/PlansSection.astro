@@ -1,0 +1,39 @@
+---
+import type { PlanCardModel } from "../../data/planes";
+import PlanCard from "./PlanCard.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  plans: PlanCardModel[];
+  sectionId?: string;
+}
+
+const { title, description, plans, sectionId = "planes" } = Astro.props as Props;
+---
+
+<section id={sectionId} class="scroll-mt-28 py-20 lg:py-32">
+  <div class="section-shell">
+    <div class="mx-auto max-w-3xl text-center" data-reveal="fade-up">
+      <h2 class="text-3xl font-semibold text-content sm:text-4xl">
+        {title}
+      </h2>
+      <p class="mt-4 text-lg text-muted">
+        {description}
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-6 lg:grid-cols-3">
+      {plans.map((plan, index) => (
+        <div
+          id={plan.id}
+          class="h-full scroll-mt-28"
+          data-reveal="fade-up"
+          data-delay={String(index * 80)}
+        >
+          <PlanCard plan={plan} />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

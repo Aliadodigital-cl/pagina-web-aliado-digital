@@ -1,9 +1,8 @@
 ---
 import { Icon } from "astro-icon/components";
-import HeroSlideshow from "./HeroSlideshow.astro";
 import type { SiteSettings, HeroSectionContent } from "../../lib/api/types";
-import { buildWhatsAppLink } from "../../lib/utils";
-import HeroBackgroundSlideshow from "../hero/HeroBackgroundSlideshow.tsx";
+import { getWhatsAppUrl } from "../../config/contact";
+import HeroBackgroundSlideshow from "../hero/HeroBackgroundSlideshow.astro";
 
 type Slide = {
   src: string;
@@ -19,9 +18,9 @@ interface Props {
 }
 
 const { siteSettings, content, slides } = Astro.props as Props;
-const whatsappUrl = buildWhatsAppLink(
-  siteSettings.whatsappNumber,
+const whatsappUrl = getWhatsAppUrl(
   "Hola! Quiero potenciar mi web y automatizar ventas.",
+  siteSettings.whatsappNumber,
 );
 
 const heroImages = [
@@ -36,31 +35,36 @@ const activeSlides = slides && slides.length > 0 ? slides : heroImages;
 
 <section
   id="inicio"
-  class="relative h-screen min-h-[700px] w-full overflow-hidden"
+  class="relative h-[100svh] min-h-[620px] w-full overflow-hidden max-[360px]:min-h-[560px] sm:min-h-[700px]"
 >
   <!-- Background Slideshow -->
   <div class="absolute inset-0 z-0">
     <HeroBackgroundSlideshow
-      client:load
       slides={activeSlides}
       intervalMs={7000}
       transitionMs={1200}
     />
   </div>
 
-  <!-- Dark Overlay -->
+  <!-- Capa para leer el texto: más suave en modo claro -->
   <div
-    class="absolute inset-0 z-10 bg-gradient-to-t from-black/70 via-black/50 to-transparent"
+    class="absolute inset-0 z-10 bg-gradient-to-t from-black/60 via-black/35 to-black/10 dark:from-black/70 dark:via-black/50 dark:to-transparent"
+  >
+  </div>
+  <!-- Transición suave hacia el fondo de la página -->
+  <div
+    class="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-24 bg-gradient-to-b from-transparent to-surface sm:h-32"
+    aria-hidden="true"
   >
   </div>
 
   <!-- Content -->
   <div
-    class="relative z-20 flex h-full flex-col items-center justify-center text-center text-white p-4"
+    class="hero-safe-offset relative z-20 flex h-full flex-col items-center justify-center px-4 pb-4 pt-0 text-center text-white max-[480px]:px-3 max-[480px]:pb-3 max-[360px]:pb-2"
   >
-    <div class="flex max-w-4xl flex-col items-center gap-y-6">
+    <div class="flex max-w-4xl flex-col items-center gap-y-6 max-[480px]:gap-y-4 max-[360px]:gap-y-3">
       <div
-        class="animate-fade-in-up inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm backdrop-blur-sm"
+        class="animate-fade-in-up inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm backdrop-blur-sm max-[430px]:gap-1.5 max-[430px]:px-3 max-[430px]:py-1.5 max-[430px]:text-[11px] max-[360px]:gap-1 max-[360px]:px-2.5 max-[360px]:py-1 max-[360px]:text-[10px]"
       >
         <span class="relative flex h-2 w-2">
           <span
@@ -73,57 +77,66 @@ const activeSlides = slides && slides.length > 0 ? slides : heroImages;
       </div>
 
       <h1
-        class="text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl"
+        class="mx-auto max-w-[22ch] text-[clamp(1.625rem,7.4vw,3.75rem)] font-bold leading-[1.08] tracking-tight text-white [text-wrap:balance]"
         style="animation: fade-in-in-up 0.8s 0.2s both cubic-bezier(0.25, 0.46, 0.45, 0.94);"
-        aria-label="Te acompañamos a crecer con marketing digital y desarrollo web"
       >
-        Te acompañamos a <span id="hero-typewriter"></span><span
-          class="typewriter-cursor">|</span
-        >
+        Páginas web y campañas que traen clientes a pymes de la Región de Coquimbo
       </h1>
 
       <p
-        class="max-w-2xl text-lg text-white/80 md:text-xl"
+        class="max-w-[62ch] text-base leading-relaxed text-white/85 [text-wrap:pretty] max-[480px]:max-w-[34ch] max-[480px]:text-[0.98rem] max-[360px]:text-[0.92rem] sm:text-lg md:text-xl"
         style="animation: fade-in-up 0.8s 0.4s both cubic-bezier(0.25, 0.46, 0.45, 0.94);"
       >
-        Desarrollo web, sistemas y marketing digital para pymes en Chile. Creamos
-        sitios rápidos, automatizamos tareas y activamos campañas que convierten
-        para que tu negocio crezca con claridad.
+        Somos un equipo de ingenieros con oficina en La Serena. Hacemos tu web, la conectamos a WhatsApp y medimos cada consulta, para pymes de toda la Región de Coquimbo y el resto de Chile.
       </p>
 
       <div
-        class="flex flex-col gap-4 sm:flex-row"
+        class="mx-auto flex w-full max-w-md flex-col items-center justify-center gap-3 max-[480px]:gap-2.5 sm:max-w-none sm:flex-row sm:flex-wrap sm:gap-4"
         style="animation: fade-in-up 0.8s 0.6s both cubic-bezier(0.25, 0.46, 0.45, 0.94);"
       >
-        <a
-          href={whatsappUrl}
-          target="_blank"
-          rel="noreferrer"
-          class="inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3.5 text-base font-semibold text-white shadow-lg transition-transform duration-200 hover:scale-105"
-        >
-          <Icon name="simple-icons:whatsapp" class="h-5 w-5" />
-          <span>Contactar por WhatsApp</span>
-        </a>
+        {whatsappUrl ? (
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Contactar por WhatsApp"
+            class="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3.5 text-base font-semibold text-white shadow-lg transition-transform duration-200 hover:scale-105 sm:w-auto"
+          >
+            <Icon name="simple-icons:whatsapp" class="h-5 w-5" />
+            <span>Contactar por WhatsApp</span>
+          </a>
+        ) : (
+          <button
+            type="button"
+            disabled
+            aria-label="WhatsApp no disponible"
+            class="inline-flex min-h-11 w-full cursor-not-allowed items-center justify-center gap-2 rounded-full bg-[#25D366]/60 px-6 py-3.5 text-base font-semibold text-white/90 shadow-lg sm:w-auto"
+          >
+            <Icon name="simple-icons:whatsapp" class="h-5 w-5" />
+            <span>Contactar por WhatsApp</span>
+          </button>
+        )}
         <a
           href="#servicios"
-          class="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-3.5 text-base font-semibold text-white backdrop-blur-md transition-colors duration-200 hover:bg-white/20"
+          aria-label="Ver soluciones"
+          class="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-3.5 text-base font-semibold text-white backdrop-blur-md transition-colors duration-200 hover:bg-white/20 max-[360px]:hidden sm:w-auto"
         >
           <span>Ver soluciones</span>
           <Icon name="lucide:arrow-right" class="h-4 w-4" />
         </a>
       </div>
     </div>
-    <div class="mt-16 flex max-w-4xl items-center gap-6">
+    <div class="mt-8 flex max-w-4xl items-center gap-6 max-[480px]:mt-6 max-[480px]:gap-4 max-[360px]:mt-4">
           {
             siteSettings.socialLinks.map((link) => (
               <a
                 href={link.url}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 aria-label={`Visita nuestro perfil de ${link.name}`}
                 class="text-slate-400 transition-colors hover:text-white"
               >
-                <Icon name={link.icon} class="h-6 w-6" />
+                <Icon name={link.icon} class="h-6 w-6 max-[360px]:h-5 max-[360px]:w-5" />
               </a>
             ))
           }
@@ -131,39 +144,6 @@ const activeSlides = slides && slides.length > 0 ? slides : heroImages;
   </div>
 </section>
 
-<script is:inline>
-  document.addEventListener("DOMContentLoaded", () => {
-    const text = "crecer con marketing digital y desarrollo web";
-    const typewriter = document.getElementById("hero-typewriter");
-    const cursor = document.querySelector(".typewriter-cursor");
-
-    // Safety check
-    if (!typewriter) return;
-
-    // Prefers reduced motion check
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (mediaQuery.matches) {
-      typewriter.textContent = text;
-      // Hide cursor if no animation
-      if (cursor) cursor.style.display = "none";
-      return;
-    }
-
-    let index = 0;
-    const speed = 50; // ms per char
-
-    function type() {
-      if (index < text.length) {
-        typewriter.textContent += text.charAt(index);
-        index++;
-        setTimeout(type, speed);
-      }
-    }
-
-    // Start typing after a short delay (e.g. after fade-in starts)
-    setTimeout(type, 500);
-  });
-</script>
 
 <style>
   @keyframes fade-in-up {
@@ -179,26 +159,6 @@ const activeSlides = slides && slides.length > 0 ? slides : heroImages;
 
   .animate-fade-in-up {
     animation: fade-in-up 0.8s both cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-
-  /* Typewriter Cursor */
-  .typewriter-cursor {
-    display: inline-block;
-    font-weight: 100; /* Thinner */
-    color: inherit;
-    margin-left: 2px;
-    animation: blink 1s step-end infinite;
-    opacity: 1;
-  }
-
-  @keyframes blink {
-    0%,
-    100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0;
-    }
   }
 </style>
 

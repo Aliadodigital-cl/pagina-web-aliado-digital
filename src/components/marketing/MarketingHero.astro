@@ -1,5 +1,5 @@
 ---
-import HeroBackgroundSlideshow from "../hero/HeroBackgroundSlideshow.tsx";
+import HeroBackgroundSlideshow from "../hero/HeroBackgroundSlideshow.astro";
 import GoogleG from "../ui/GoogleG.astro";
 import type { PageHero, ValueSection } from "../../lib/api/types";
 
@@ -13,7 +13,7 @@ const { hero, value, sectionId = "marketing-hero" } = Astro.props as Props;
 
 const hasSlides = Boolean(hero?.slides && hero.slides.length > 0);
 const slides = hasSlides
-  ? hero.slides
+  ? hero.slides ?? []
   : hero?.imageSrc
     ? [{ src: hero.imageSrc, alt: hero.imageAlt ?? "" }]
     : [];
@@ -34,12 +34,11 @@ const items = value.items ?? [];
 
 <section
   id={sectionId}
-  class="relative min-h-screen overflow-hidden"
+  class="relative min-h-[100svh] overflow-hidden"
 >
   <div class="absolute inset-0 z-0">
     {slides.length > 0 ? (
       <HeroBackgroundSlideshow
-        client:load
         slides={slides}
         intervalMs={7000}
         transitionMs={1200}
@@ -50,7 +49,7 @@ const items = value.items ?? [];
   <div class="absolute inset-0 z-10 bg-gradient-to-t from-black/70 via-black/50 to-transparent"></div>
   <div class="absolute inset-0 z-10 backdrop-blur-[2px]"></div>
 
-  <div class="section-shell relative z-20 flex min-h-screen items-center py-24 sm:py-28 lg:py-32">
+  <div class="hero-safe-offset section-shell relative z-20 flex min-h-[100svh] items-center pb-24 sm:pb-28 lg:pb-32">
     <div class="grid w-full gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
       <div class="space-y-5" data-reveal="fade-up">
         {value.eyebrow && (
@@ -71,7 +70,7 @@ const items = value.items ?? [];
               <a
                 href={primaryCta.href}
                 target={isExternalCta ? "_blank" : undefined}
-                rel={isExternalCta ? "noreferrer" : undefined}
+                rel={isExternalCta ? "noopener noreferrer" : undefined}
                 class="inline-flex w-full min-w-[240px] items-center justify-center gap-2 rounded-full bg-white px-7 py-3 text-sm font-semibold text-slate-900 shadow-lg shadow-black/20 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/90 sm:w-auto sm:min-w-[260px]"
               >
                 {showGoogleIcon ? <GoogleG size={16} /> : null}
@@ -100,7 +99,7 @@ const items = value.items ?? [];
             const isWithoutSystem = labelText.includes("sin sistema");
             const isMethod =
               labelText.includes("con método") ||
-              labelText.includes("con metodo");
+              labelText.includes("con método");
 
             const cardTone = isWithoutSystem
               ? "border-rose-300/50 bg-rose-500/25 hover:border-rose-200/80"

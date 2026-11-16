@@ -1,4 +1,4 @@
-﻿---
+---
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/layout/Navbar.astro";
 import Hero from "../components/sections/Hero.astro";
@@ -11,13 +11,13 @@ import ContactSection from "../components/sections/ContactSection.astro";
 import Footer from "../components/layout/Footer.astro";
 import AboutUs from "../components/sections/AboutUs.astro";
 import WhatsAppFloatingButton from "../components/layout/WhatsAppFloatingButton.astro";
-import BannerWeb from "../components/banners/BannerWeb.astro";
-import BannerMarketing from "../components/banners/BannerMarketing.astro";
+import QueHacemosSection from "../components/sections/QueHacemosSection.astro";
 import { fetchSiteSettings, fetchCases, fetchFaqs } from "../lib/api/services";
 
-import type { Content, HomePageContent, Service } from "../lib/api/types";
+import type { Content, HomePageContent } from "../lib/api/types";
 import contentJson from "../data/content.json";
 import homeJson from "../data/pages/home.json";
+import { planesComoServicios } from "../data/planes";
 
 // Import the marquee component and its data
 import PortfolioMarqueeSection from "../components/sections/PortfolioMarqueeSection.tsx";
@@ -39,87 +39,14 @@ const homeNavLinks = navLinks.filter((link) => {
   return true;
 });
 
-const planSummaries: Service[] = [
-  {
-    slug: "planes-desarrollo",
-    type: "web",
-    variant: "web",
-    title: "Planes de desarrollo",
-    what_it_solves:
-      "Web estática, web administrable o sistemas a medida según tu etapa.",
-    benefits: [
-      "Web estática profesional",
-      "Web administrable",
-      "Sistema de gestión a medida",
-      "Sitio listo para captar consultas desde el primer día",
-    ],
-    delivery_time: "Según plan",
-    modality: "Proyecto",
-    price: "Desde $160.000 CLP",
-    top_banner: "Desarrollo",
-    icon: "lucide:layout",
-    whatsapp_desc: "Hola, quiero ver los planes de desarrollo disponibles.",
-    ctaLabel: "Ver planes disponibles",
-    ctaHref: "/desarrollo#planes",
-    order: 1,
-  },
-  {
-    slug: "planes-marketing",
-    type: "digital",
-    variant: "marketing",
-    accent: "amber",
-    title: "Planes de marketing",
-    what_it_solves:
-      "Planes para atraer clientes con campañas, contenido y optimización.",
-    benefits: [
-      "Meta Ads y Google Ads",
-      "Redes sociales y contenido",
-      "Embudos y estrategia",
-      "Objetivo comercial de 80 a 200 clientes potenciales al mes (según rubro e inversión)",
-    ],
-    delivery_time: "Según plan",
-    modality: "Mensual",
-    price: "Desde $297.000 CLP",
-    top_banner: "Marketing",
-    icon: "lucide:rocket",
-    whatsapp_desc: "Hola, quiero ver los planes de marketing disponibles.",
-    ctaLabel: "Ver planes disponibles",
-    ctaHref: "/marketing#planes",
-    order: 2,
-  },
-  {
-    slug: "planes-mixto",
-    type: "digital",
-    variant: "mixed",
-    accent: "orange",
-    title: "Plan mixto web + marketing",
-    what_it_solves:
-      "Combina desarrollo web y campañas para lanzar y convertir.",
-    benefits: [
-      "Landing optimizada",
-      "Campañas con tracking",
-      "Landing y campañas alineadas en una sola estrategia comercial",
-      "Estrategia full-funnel para escalar a 80-200 clientes potenciales por mes",
-    ],
-    delivery_time: "14 días hábiles",
-    modality: "Proyecto + Mensual",
-    price: "Desde $450.000 CLP",
-    top_banner: "Mixto",
-    icon: "lucide:layers",
-    whatsapp_desc: "Hola, quiero ver los planes mixtos disponibles.",
-    ctaLabel: "Hablar por WhatsApp",
-    ctaHref: "",
-    order: 3,
-  },
-];
-
+const planSummaries = planesComoServicios("/planes");
 const siteSettings = await fetchSiteSettings();
 const cases = await fetchCases();
 const faqs = await fetchFaqs();
 const recentCases = cases;
-const pageTitle = "Aliado Digital | Web y Marketing para Pymes en Chile";
+const pageTitle = "Diseño Web y Marketing Digital en la Región de Coquimbo | Aliado Digital";
 const pageDescription =
-  "Desarrollo web, sistemas y marketing digital para pymes en Chile. Estrategia, campañas y resultados medibles desde la Región de Coquimbo.";
+  "Agencia de diseño web, desarrollo a medida y marketing digital en La Serena, Coquimbo, Ovalle y toda la Región de Coquimbo. Sitios que cargan rápido y campañas con resultados medibles.";
 ---
 
 <Layout
@@ -128,19 +55,24 @@ const pageDescription =
   siteSettings={siteSettings}
 >
   <Navbar siteSettings={siteSettings} navLinks={homeNavLinks} />
-  <main class="space-y-8 overflow-x-hidden max-w-full">
+  <main class="overflow-x-hidden max-w-full">
     <Hero siteSettings={siteSettings} content={heroSection} />
 
     <div id="planes-web" aria-hidden="true"></div>
     <div id="planes-marketing" aria-hidden="true"></div>
     <div id="planes-combo" aria-hidden="true"></div>
-    <div id="planes" aria-hidden="true"></div>
 
-    {/* Show summary cards for each plan group */}
+    {/* Qué hacemos: web y campañas con trabajo real */}
+    <QueHacemosSection />
+
+    {/* Planes mensuales con precio publicado */}
     <ServicesSection
+      sectionId="planes"
       services={planSummaries}
       whatsappNumber={siteSettings.whatsappNumber}
       singleGrid
+      title="Planes mensuales"
+      description="Tres planes con precio publicado. Elige según lo que necesitas hoy y cambia de plan cuando crezcas."
     />
 
     {/* Social proof early - Cases show we deliver results */}
@@ -150,45 +82,9 @@ const pageDescription =
     {showProcessSection ? <ProcessSection /> : null}
 
     {/* More social proof - Portfolio companies */}
-    <div class="container mx-auto px-6 sm:px-8">
-      <BannerWeb
-        size="compact"
-        title="Convierte visitas en clientes con una web que transmite confianza"
-        subtitle="Diseño premium, velocidad real y estructura para crecer"
-        description="Creamos sitios rápidos y claros, listos para vender desde el primer día, con SEO técnico y base escalable."
-        bgImage="/images/sections/desarrollo.webp"
-        imageAlt="Desarrollo web en dispositivos"
-        bullets={[
-          "UX pensada para conversiones",
-          "Carga rápida y experiencia impecable en móvil",
-          "SEO técnico y analítica para medir resultados",
-        ]}
-        primaryLink={{ label: "Ir a desarrollo", href: "/desarrollo" }}
-        secondaryLink={{ label: "Ver planes web", href: "/desarrollo#planes" }}
-        class="w-full"
-      />
-    </div>
 
     <PortfolioMarqueeSection client:visible companies={portfolioCompanies} />
 
-    <div class="container mx-auto px-6 sm:px-8">
-      <BannerMarketing
-        size="compact"
-        title="Campañas que generan demanda y ventas reales"
-        subtitle="Meta Ads con estrategia, creatividad y optimización continua"
-        description="Atrae clientes con anuncios medibles, segmentación precisa y mensajes que convierten."
-        bgImage="/images/sections/marketing.webp"
-        imageAlt="Marketing digital en dispositivos"
-        bullets={[
-          "Leads calificados cada semana",
-          "Creatividades y copies según tu rubro",
-          "Optimización con datos, no con intuición",
-        ]}
-        primaryLink={{ label: "Ir a marketing", href: "/marketing" }}
-        secondaryLink={{ label: "Ver planes de marketing", href: "/marketing#planes" }}
-        class="w-full"
-      />
-    </div>
 
     {/* About Us after user is already interested */}
     <AboutUs />

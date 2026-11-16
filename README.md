@@ -24,6 +24,13 @@ Nota: al ser un build estatico los datos se toman durante la fase de build; si c
 5. Puerto expuesto por la imagen: `80`. Configura Dokploy para publicar ese puerto.
 6. Opcional: habilita auto deploy con webhooks de GitHub para que Dokploy reconstruya al hacer push.
 
+## Despliegue en Dokploy con Nixpacks + Nginx
+- Si usas Nixpacks en vez de Dockerfile, este repo ya incluye `nixpacks.toml` para:
+  - `npm ci` + `npm run build`
+  - levantar `nginx` con `scripts/start-nginx.sh`
+  - servir `dist/` con la misma politica de cache usada en Docker (`nginx.conf`).
+- El puerto se toma desde `PORT` (default `80`).
+
 ## Despliegue en Vercel
 - Recomendado: `USE_MOCK_DATA=true` para previews o cuando no tengas backend.
 - Para usar Strapi: `USE_MOCK_DATA=false`, `STRAPI_URL=https://tu-strapi.com`, `STRAPI_API_TOKEN=<token>` (si aplica). Recuerda que las variables para cliente deben empezar con `PUBLIC_`.
@@ -33,4 +40,16 @@ Nota: al ser un build estatico los datos se toman durante la fase de build; si c
 ## Probar local
 - `npm run dev` para desarrollo
 - `npm run build` para validar el build estatico
+- `npm run typecheck` para validacion TypeScript
+- `npm run lint` para linting
+- `npm run test` para pruebas unitarias
+- `npm run budget` para validar presupuesto de assets/chunks
 - `docker build -t cuarta-region .` y `docker run -p 8080:80 cuarta-region` para probar la imagen que usa Dokploy
+- Evidencia UI before/after:
+  - `powershell -ExecutionPolicy Bypass -File scripts/capture-ui-evidence.ps1 -Root "<repo>" -BaselineRoot "<repo-baseline>"`
+  - `node scripts/compare-ui-evidence.mjs`
+
+## Docker reproducible (multi-stage)
+- El `Dockerfile` ahora construye `dist` dentro de la imagen (no depende de `dist/` local).
+- Variables de build opcionales via `--build-arg`: `USE_MOCK_DATA`, `STRAPI_URL`, `STRAPI_API_TOKEN`, `STRAPI_TOKEN`, `PUBLIC_STRAPI_URL`, `PUBLIC_STRAPI_GRAPHQL_URL`, `PUBLIC_SITE_URL`, `PUBLIC_ENV`, `SITE_URL`.
+- nginx sirve `dist` con headers de hardening y politica de cache para assets estaticos.

@@ -1,11 +1,11 @@
 {
   "seo": {
-    "title": "Desarrollo Web y Software para Pymes | Aliado Digital",
-    "description": "Desarrollo web y software a medida para pymes en Chile. Sitios rápidos, escalables y listos para crecer."
+    "title": "Diseño y Desarrollo Web en la Región de Coquimbo | Aliado Digital",
+    "description": "Diseño y desarrollo web a medida en La Serena, Coquimbo y Ovalle. Páginas rápidas, administrables y escalables para pymes de la Región de Coquimbo."
   },
   "hero": {
-    "title": "Soluciones con Tecnología",
-    "subtitle": "Desarrollo web y sistemas a medida para que tu negocio se vea profesional y funcione mejor",
+    "title": "Diseño y desarrollo web en la Región de Coquimbo",
+    "subtitle": "Diseñamos páginas web y sistemas a medida para pymes de toda la Región de Coquimbo, para que tu negocio se vea profesional y funcione mejor",
     "primaryCta": {
       "label": "Cotizar desarrollo",
       "href": "#contacto-desarrollo"
@@ -41,9 +41,9 @@
   },
   "value": {
     "eyebrow": "SERVICIOS DE DESARROLLO WEB",
-    "title": "Tecnologia con foco en resultados",
-    "description": "Un buen desarrollo no es solo codigo: es una herramienta para crecer, automatizar y tomar mejores decisiones.",
-    "quote": "No se trata de tener una web bonita, sino de construir una solucion que ordene tu operacion y genere ventas.",
+    "title": "Tecnología con foco en resultados",
+    "description": "Un buen desarrollo no es solo código: es una herramienta para crecer, automatizar y tomar mejores decisiones.",
+    "quote": "No se trata de tener una web bonita, sino de construir una solución que ordene tu operación y genere ventas.",
     "ctaLabel": "Cotizar desarrollo",
     "ctaHref": "#contacto-desarrollo",
     "ctaNote": "Propuesta inicial en menos de 24h hábiles.",
@@ -73,64 +73,12 @@
     ]
   },
   "plansSection": {
-    "title": "Planes de desarrollo y tecnologia",
-    "description": "Selecciona la solucion que necesitas hoy y acompanamos tu crecimiento con mejoras constantes."
+    "title": "Páginas web y sistemas: precios",
+    "description": "Pago único por construir tu sitio. Después puedes sumar un plan mensual para mantenerlo y hacerlo crecer."
   },
-  "plans": [
-    {
-      "name": "Landing profesional",
-      "price": "$160.000 CLP",
-      "reach": "Ideal para validar tu oferta y empezar a vender.",
-      "benefits": [
-        "Pagina rapida y clara",
-        "Diseno adaptable a movil y desktop",
-        "Boton directo a WhatsApp y formulario"
-      ],
-      "results": [
-        "Presencia online profesional",
-        "Mayor confianza desde el primer dia",
-        "Consultas mas ordenadas"
-      ],
-      "ctaHref": "#contacto-desarrollo"
-    },
-    {
-      "name": "Web administrable",
-      "price": "$250.000 CLP",
-      "reach": "Para negocios que necesitan actualizar contenido sin depender de terceros.",
-      "benefits": [
-        "Panel de administracion simple",
-        "Integracion de contacto y formularios",
-        "SEO tecnico basico incluido"
-      ],
-      "results": [
-        "Autonomia para actualizar la web",
-        "Mejor organizacion del contenido",
-        "Base lista para crecer"
-      ],
-      "featured": true,
-      "highlightLabel": "Mas solicitado",
-      "ctaHref": "#contacto-desarrollo"
-    },
-    {
-      "name": "Sistema a medida",
-      "price": "$650.000 CLP",
-      "reach": "Para ordenar procesos y escalar con control.",
-      "benefits": [
-        "Plataforma adaptada a tu operacion",
-        "Automatizacion de tareas clave",
-        "Soporte en la implementacion"
-      ],
-      "results": [
-        "Operaciones mas ordenadas",
-        "Mejor control del negocio",
-        "Escalabilidad real"
-      ],
-      "ctaHref": "#contacto-desarrollo"
-    }
-  ],
   "useCasesSection": {
     "eyebrow": "Como trabajamos",
-    "title": "Asi construimos tu desarrollo",
+    "title": "Así construimos tu desarrollo",
     "description": "Orden, claridad y foco en resultados reales.",
     "cases": [
       {
@@ -145,19 +93,19 @@
         ]
       },
       {
-        "title": "Diseno y desarrollo",
-        "description": "Construimos una interfaz clara y una base tecnica solida.",
+        "title": "Diseño y desarrollo",
+        "description": "Construimos una interfaz clara y una base técnica solida.",
         "icon": "lucide:layout",
         "cardColor": "#0ea5e9",
         "backgroundImage": "/images/backgrounds/why-us-1.webp",
         "bullets": [
-          "UI/UX con foco en conversion",
-          "Codigo optimizado y escalable"
+          "UI/UX con foco en conversión",
+          "Código optimizado y escalable"
         ]
       },
       {
         "title": "Lanzamiento y mejoras",
-        "description": "Publicamos, medimos y optimizamos segun resultados.",
+        "description": "Publicamos, medimos y optimizamos según resultados.",
         "icon": "lucide:rocket",
         "cardColor": "#a855f7",
         "backgroundImage": "/images/sections/process-manos.webp",
@@ -182,8 +130,8 @@
       },
       {
         "num": "02",
-        "title": "Diseno y prototipo",
-        "desc": "Disenamos la interfaz y validamos la estructura antes de desarrollar.",
+        "title": "Diseño y prototipo",
+        "desc": "Diseñamos la interfaz y validamos la estructura antes de desarrollar.",
         "result": "Prototipo validado",
         "img": "/images/nuestro-proceso/paso-02.webp"
       },
@@ -191,7 +139,7 @@
         "num": "03",
         "title": "Desarrollo + QA",
         "desc": "Construimos la plataforma con foco en performance, SEO y seguridad.",
-        "result": "Version lista para publicar",
+        "result": "Versión lista para publicar",
         "img": "/images/nuestro-proceso/paso-03.webp"
       },
       {
@@ -204,8 +152,8 @@
     ]
   },
   "trust": {
-    "title": "Equipos que confian en nuestro desarrollo",
-    "description": "Trabajamos con negocios que buscan tecnologia estable, segura y con soporte real.",
+    "title": "Equipos que confían en nuestro desarrollo",
+    "description": "Trabajamos con negocios que buscan tecnología estable, segura y con soporte real.",
     "logos": [
       "Andes",
       "Puerto",
@@ -224,7 +172,7 @@
   "contactSection": {
     "eyebrow": "Hablemos",
     "title": "Hablemos de tu desarrollo",
-    "description": "Cuentanos sobre tu proyecto y te proponemos un camino claro para construirlo.",
+    "description": "Cuéntanos sobre tu proyecto y te proponemos un camino claro para construirlo.",
     "sectionId": "contacto-desarrollo",
     "whatsappMessage": "Hola! Quiero cotizar un desarrollo web a medida.",
     "primaryCtaLabel": "Contactar por WhatsApp",
@@ -232,11 +180,10 @@
     "secondaryCtaHref": "https://forms.gle/5MEDYUSc2pZpS4tz8"
   },
   "cta": {
-    "title": "Listo para construir una solucion digital solida?",
-    "description": "Cuentanos sobre tu proyecto y te ayudamos a definir el mejor camino.",
+    "title": "Listo para construir una solución digital solida?",
+    "description": "Cuéntanos sobre tu proyecto y te ayudamos a definir el mejor camino.",
     "ctaLabel": "Hablemos de tu desarrollo",
     "sectionId": "contacto-desarrollo",
     "formId": "desarrollo-form"
   }
 }
-

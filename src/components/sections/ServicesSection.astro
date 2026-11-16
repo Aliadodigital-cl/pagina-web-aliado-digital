@@ -1,15 +1,24 @@
 ---
-import type { Service } from "../../data/mock";
+import type { Service } from "../../lib/api/types";
 import ServiceCard from "../ui/ServiceCard.astro";
-import { Icon } from "astro-icon/components";
 
 interface Props {
   services: Service[];
   whatsappNumber: string;
   singleGrid?: boolean;
+  title?: string;
+  description?: string;
+  sectionId?: string;
 }
 
-const { services, whatsappNumber, singleGrid = false } = Astro.props as Props;
+const {
+  services,
+  whatsappNumber,
+  singleGrid = false,
+  sectionId = "servicios",
+  title = "Planes",
+  description = "Revisa nuestras opciones y contáctanos para una cotización en menos de 24 horas hábiles.",
+} = Astro.props as Props;
 const sortedServices = [...services].sort(
   (a, b) => (a.order ?? 99) - (b.order ?? 99),
 );
@@ -24,19 +33,17 @@ const mixedServices = sortedServices.filter(
 );
 ---
 
-<section id="servicios" class="py-20 lg:py-32">
+<section id={sectionId} class="scroll-mt-24 py-16 lg:py-24">
   <div class="container mx-auto px-6 sm:px-8">
     <!-- Section Header -->
     <div class="mx-auto mb-16 max-w-3xl text-center">
       <h2
         class="text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-5xl"
       >
-        Planes
+        {title}
       </h2>
       <p class="mt-4 text-lg text-slate-600 dark:text-white/60">
-        Cada servicio está pensado para lograr resultados claros y medibles.
-        Revisa nuestras opciones y contáctanos para una cotización en menos de
-        24 horas hábiles.
+        {description}
       </p>
     </div>
 
@@ -58,7 +65,10 @@ const mixedServices = sortedServices.filter(
         <div class="services-grid grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {webServices.map((service) => (
             <div class="service-card-wrapper">
-              <ServiceCard service={service} whatsappNumber={whatsappNumber} />
+              <ServiceCard
+                service={service}
+                whatsappNumber={whatsappNumber}
+              />
             </div>
           ))}
         </div>
@@ -79,7 +89,10 @@ const mixedServices = sortedServices.filter(
           <div class="services-grid grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {marketingServices.map((service) => (
               <div class="service-card-wrapper">
-                <ServiceCard service={service} whatsappNumber={whatsappNumber} />
+                <ServiceCard
+                  service={service}
+                  whatsappNumber={whatsappNumber}
+                />
               </div>
             ))}
           </div>
@@ -101,7 +114,10 @@ const mixedServices = sortedServices.filter(
           <div class="services-grid grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {mixedServices.map((service) => (
               <div class="service-card-wrapper">
-                <ServiceCard service={service} whatsappNumber={whatsappNumber} />
+                <ServiceCard
+                  service={service}
+                  whatsappNumber={whatsappNumber}
+                />
               </div>
             ))}
           </div>

@@ -1,0 +1,158 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Plan {
+  name: string;
+  idealFor: string;
+  price: string;
+  currency?: string;
+  priceNote?: string;
+  includes: string[];
+  deliverables?: string[];
+  ctaLabel?: string;
+  ctaHref?: string;
+  compareLabel?: string;
+  compareHref?: string;
+  featured?: boolean;
+}
+
+interface Props {
+  plan: Plan;
+}
+
+const { plan } = Astro.props as Props;
+const {
+  name,
+  idealFor,
+  price,
+  currency = "CLP",
+  priceNote = "Implementación estimada - Ajustable según alcance",
+  includes,
+  deliverables = [],
+  ctaLabel = "Cotizar este plan",
+  ctaHref = "#contacto-desarrollo",
+  featured = false,
+} = plan;
+---
+
+<article
+  class:list={[
+    "card-shine group relative flex h-full flex-col rounded-2xl border bg-card/90 p-6 shadow-sm transition-all duration-300",
+    "hover:-translate-y-0.5 hover:border-blue-300/85 hover:shadow-md dark:hover:border-blue-400/40",
+    featured
+      ? "is-featured border-sky-300/90 ring-1 ring-blue-300/45 ring-inset bg-gradient-to-b from-sky-100/65 via-card/95 to-card/95 shadow-md hover:shadow-lg dark:border-sky-400/25 dark:ring-blue-400/25 dark:from-sky-500/5 dark:via-card/98 dark:to-card/98"
+      : "border-blue-200/75 ring-1 ring-blue-200/35 ring-inset dark:border-border/70 dark:ring-0",
+  ]}
+>
+  {featured && (
+    <span class="absolute right-6 top-6 z-10 rounded-full bg-blue-600 text-white px-3 py-1 text-xs font-semibold">
+      Recomendado
+    </span>
+  )}
+  <header class="relative z-10 space-y-4">
+    <div class="space-y-3">
+      <h3 class="text-2xl font-semibold tracking-tight text-content sm:text-3xl">
+        {name}
+      </h3>
+      <div class="space-y-1">
+        <div class="flex items-end gap-2">
+          <span class="text-4xl font-semibold leading-none tracking-tight text-content sm:text-5xl">
+            {price}
+          </span>
+          {
+            currency && (
+              <span class="pb-1 text-[10px] font-semibold uppercase tracking-[0.3em] text-muted/70 sm:text-xs">
+                {currency}
+              </span>
+            )
+          }
+        </div>
+        <p class="text-xs text-muted/80">{priceNote}</p>
+      </div>
+      <p class="text-sm text-muted">Ideal para: {idealFor}</p>
+    </div>
+  </header>
+
+  <div class="relative z-10 mt-6 space-y-3">
+    <p class="text-xs font-semibold uppercase tracking-[0.24em] text-muted">
+      Incluye
+    </p>
+    <ul class="space-y-3 text-sm text-content">
+      {includes.map((item) => (
+        <li class="flex items-start gap-3">
+          <Icon
+            name="lucide:check"
+            class="mt-0.5 h-4 w-4 flex-shrink-0 text-blue-500 dark:text-blue-400"
+            aria-hidden="true"
+          />
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <footer class="relative z-10 mt-auto space-y-4 pt-6">
+    {deliverables.length > 0 && (
+    <div class="space-y-2 rounded-xl border border-border/70 bg-surface-strong/60 p-4">
+      <p class="text-xs font-semibold uppercase tracking-[0.24em] text-muted">
+        Entregables
+      </p>
+      <ul class="space-y-2 text-sm text-content">
+        {deliverables.map((item) => (
+          <li class="flex items-start gap-3">
+            <Icon
+              name="lucide:clipboard-check"
+              class="mt-0.5 h-4 w-4 flex-shrink-0 text-sky-600 dark:text-sky-400"
+              aria-hidden="true"
+            />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+    )}
+
+    <div class="space-y-3">
+      <a
+        href={ctaHref}
+        target={ctaHref.startsWith("http") ? "_blank" : undefined}
+        rel={ctaHref.startsWith("http") ? "noopener" : undefined}
+        class="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-sky-300 via-blue-400 to-indigo-500 px-5 py-3 text-sm font-semibold text-slate-900 shadow-lg shadow-blue-700/20 transition hover:from-sky-400 hover:via-blue-500 hover:to-indigo-600 hover:shadow-xl dark:from-sky-500 dark:via-blue-600 dark:to-indigo-700 dark:text-white dark:hover:from-sky-600 dark:hover:via-blue-700 dark:hover:to-indigo-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-300/45"
+      >
+        {ctaLabel}
+      </a>
+    </div>
+  </footer>
+</article>
+
+<style>
+  .card-shine {
+    overflow: hidden;
+  }
+  .card-shine::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      420px circle at var(--mouse-x, -9999px) var(--mouse-y, -9999px),
+      rgba(96, 165, 250, 0.18),
+      transparent 40%
+    );
+    border-radius: inherit;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  :global(.dark) .card-shine.is-featured::before {
+    opacity: 0.14;
+  }
+</style>
+
+<script>
+  import { initCardShine } from "../../scripts/ui/cardShine";
+
+  initCardShine(".card-shine.is-featured");
+</script>

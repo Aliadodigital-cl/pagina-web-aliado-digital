@@ -7,6 +7,8 @@ import type {
   Content,
 } from "../../lib/api/types";
 import contentJson from "../../data/content.json";
+import { LEGAL_INFO } from "../../config/legal";
+import { CITY_LANDINGS } from "../../config/cities";
 
 interface Props {
   siteSettings: SiteSettings;
@@ -25,7 +27,10 @@ const {
   navLinks = fallbackNavLinks,
   legalPages = fallbackLegalPages,
 } = Astro.props;
-const legalLinks = Object.values(legalPages ?? {});
+const legalLinks = [
+  ...Object.values(legalPages ?? {}),
+  { slug: "eliminacion-de-datos", title: "Eliminación de datos", content: "" },
+];
 const pathname = Astro.url?.pathname ?? "/";
 const isHome = pathname === "/" || pathname === "";
 const withHome = (href: string) =>
@@ -45,20 +50,16 @@ const processedNavLinks = navLinks.map((link) => ({
         <!-- Logo -->
         <a
           href={withHome("/#inicio")}
-          class:list={[
-            "flex items-center gap-2 sm:gap-3 font-bold text-lg sm:text-xl tracking-tight transition-colors",
-            isHome
-              ? "text-white group-[.scrolled]:text-slate-900 dark:group-[.scrolled]:text-white"
-              : "text-slate-900 dark:text-white",
-          ]}
+          class="flex items-center gap-2 sm:gap-3 font-bold text-lg sm:text-xl tracking-tight text-white transition-colors"
         >
           <div class="relative rounded-lg p-[1px]">
             <div class="rounded-lg">
               <img
-                src="/logo.png"
+                src="/logo.svg"
                 alt={`Logo de ${siteSettings.siteName}`}
                 class="h-8 w-8 sm:h-10 sm:w-10 object-contain rounded-lg"
                 loading="eager"
+                onerror="this.onerror=null;this.src='/logo.webp';"
               />
             </div>
           </div>
@@ -68,6 +69,22 @@ const processedNavLinks = navLinks.map((link) => ({
         <p class="mt-4 text-sm text-slate-400">
           {siteSettings.footerText}
         </p>
+
+        <!-- Información legal (visible para verificación de empresa) -->
+        <div class="mt-6 space-y-1 text-xs leading-relaxed text-slate-500">
+          <p class="font-semibold tracking-wide text-slate-400">
+            Información legal
+          </p>
+          <p>{LEGAL_INFO.legalName}</p>
+          <p>RUT: {LEGAL_INFO.rut}</p>
+          <p>{LEGAL_INFO.address.full}</p>
+          <a
+            href={LEGAL_INFO.pageHref}
+            class="mt-1 inline-block text-slate-400 underline underline-offset-2 transition-colors hover:text-white"
+          >
+            Datos de la empresa
+          </a>
+        </div>
       </div>
 
       <!-- Column 2: Navigation -->
@@ -90,6 +107,14 @@ const processedNavLinks = navLinks.map((link) => ({
               </li>
             ))
           }
+          <li>
+            <a
+              href="/#faq"
+              class="text-slate-400 transition-colors hover:text-white"
+            >
+              Preguntas frecuentes
+            </a>
+          </li>
         </ul>
       </div>
 
@@ -113,6 +138,14 @@ const processedNavLinks = navLinks.map((link) => ({
               </li>
             ))
           }
+          <li>
+            <a
+              href={LEGAL_INFO.pageHref}
+              class="text-slate-400 transition-colors hover:text-white"
+            >
+              Información legal
+            </a>
+          </li>
         </ul>
       </div>
 
@@ -129,7 +162,7 @@ const processedNavLinks = navLinks.map((link) => ({
               <a
                 href={link.url}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 aria-label={`Visita nuestro perfil de ${link.name}`}
                 class="text-slate-400 transition-colors hover:text-white"
               >
@@ -138,6 +171,28 @@ const processedNavLinks = navLinks.map((link) => ({
             ))
           }
         </div>
+
+        <!-- Site-wide links to the city landings: they are the entry points
+             for local search, so every page should point at them. -->
+        <h3
+          class="mt-8 text-sm font-semibold tracking-wider uppercase text-slate-300"
+        >
+          Zonas
+        </h3>
+        <ul class="mt-4 space-y-3">
+          {
+            CITY_LANDINGS.map((city) => (
+              <li>
+                <a
+                  href={`/diseno-web-${city.slug}`}
+                  class="text-slate-400 transition-colors hover:text-white"
+                >
+                  Diseño web en {city.city}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
       </div>
     </div>
   </div>

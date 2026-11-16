@@ -1,7 +1,10 @@
 ---
-import type { SiteSettings } from "../data/mock";
+import type { SiteSettings } from "../lib/api/types";
 import SEO from "../components/SEO.astro";
+import GoogleTagManager from "../components/analytics/GoogleTagManager.astro";
 import { env } from "../lib/env";
+import "@fontsource-variable/sora";
+import soraLatin from "@fontsource-variable/sora/files/sora-latin-wght-normal.woff2?url";
 import "../styles/global.css";
 
 interface Props {
@@ -32,7 +35,6 @@ const {
   structuredData,
   noindex,
 } = Astro.props as Props;
-const siteName = siteSettings?.siteName ?? "Agencia Digital";
 const siteUrl = env.siteUrl ?? (Astro.site ? Astro.site.toString() : undefined);
 const structuredDataItems = Array.isArray(structuredData)
   ? structuredData
@@ -46,6 +48,13 @@ const structuredDataItems = Array.isArray(structuredData)
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <GoogleTagManager placement="head" />
+
+    <meta
+      name="facebook-domain-verification"
+      content="hl9dao0yom2ug4e7lzncmfb7xdudy7"
+    />
     <SEO
       title={title}
       description={description}
@@ -71,12 +80,7 @@ const structuredDataItems = Array.isArray(structuredData)
     <meta name="generator" content="Astro" />
     {siteUrl && <link rel="sitemap" href={`${siteUrl}/sitemap.xml`} />}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preload" href={soraLatin} as="font" type="font/woff2" crossorigin />
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -98,13 +102,27 @@ const structuredDataItems = Array.isArray(structuredData)
         }
       })();
     </script>
+    <slot name="head" />
   </head>
   <body class="min-h-screen transition-colors overflow-x-hidden">
+    <GoogleTagManager placement="body" />
+
     <slot />
 
     <!-- Global Motion System -->
     <script>
-      import "../scripts/motion.ts";
+      const initMotion = () => {
+        if (!document.querySelector("[data-reveal]")) return;
+        import("../scripts/motion.ts");
+      };
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initMotion, { once: true });
+      } else {
+        initMotion();
+      }
+
+      document.addEventListener("astro:after-swap", initMotion);
     </script>
 
     <style is:global>
@@ -113,46 +131,13 @@ const structuredDataItems = Array.isArray(structuredData)
         opacity: 0;
         transition-property: opacity, transform;
         transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+        transition-duration: 600ms;
         will-change: opacity, transform;
       }
 
-      /* Duration variants */
-      [data-reveal][data-duration="400"] {
-        transition-duration: 400ms;
-      }
-      [data-reveal][data-duration="600"] {
-        transition-duration: 600ms;
-      }
-      [data-reveal][data-duration="800"] {
-        transition-duration: 800ms;
-      }
-      [data-reveal]:not([data-duration]) {
-        transition-duration: 600ms;
-      }
-
-      /* Fade Up (default) */
+      /* Reveal (current use: fade-up) */
       [data-reveal="fade-up"] {
         transform: translateY(1rem);
-      }
-
-      /* Fade */
-      [data-reveal="fade"] {
-        transform: none;
-      }
-
-      /* Zoom */
-      [data-reveal="zoom"] {
-        transform: scale(0.95);
-      }
-
-      /* Slide Left */
-      [data-reveal="slide-left"] {
-        transform: translateX(2rem);
-      }
-
-      /* Slide Right */
-      [data-reveal="slide-right"] {
-        transform: translateX(-2rem);
       }
 
       /* Visible State */

@@ -16,10 +16,19 @@ export type StrapiEntity<T> = {
   attributes?: T;
 };
 
+export type StrapiMediaAttributes = {
+  url?: string | null;
+  alternativeText?: string | null;
+};
+
+export type StrapiMediaEntity = StrapiEntity<StrapiMediaAttributes>;
+
+export type StrapiMediaItem = StrapiMediaAttributes | StrapiMediaEntity;
+
 export type StrapiMedia =
-  | { data?: StrapiEntity<{ url?: string; alternativeText?: string }> | StrapiEntity<{ url?: string; alternativeText?: string }>[] | null }
-  | { url?: string; alternativeText?: string }
-  | Array<{ url?: string; alternativeText?: string }>;
+  | { data?: StrapiMediaEntity | StrapiMediaEntity[] | null }
+  | StrapiMediaItem
+  | StrapiMediaItem[];
 
 export type StrapiBullet = { text?: string | null };
 export type StrapiCasePoint = { text?: string | null; tone?: string | null };
@@ -48,7 +57,7 @@ export type SiteSettings = {
   footerText: string;
 };
 
-export type ServiceCategory = "web" | "maintenance" | "digital";
+export type ServiceCategory = "web" | "maintenance" | "digital" | "software";
 
 export type Service = {
   slug: string;
@@ -63,6 +72,8 @@ export type Service = {
   deliverables?: string[];
   delivery_time?: string;
   price?: string;
+  priceLabel?: string;
+  priceNote?: string;
   ctaLabel?: string;
   ctaHref?: string;
   ctaType?: string;
@@ -83,6 +94,8 @@ export type CaseStudy = {
   title?: string;
   coverImage?: string;
   coverImageAlt?: string;
+  /** Captura del sitio en celular (390 px de ancho). */
+  coverImageMobile?: string;
   beforeTitle?: string;
   afterTitle?: string;
   beforePoints?: Array<{ text: string; tone?: string }>;
@@ -95,7 +108,28 @@ export type CaseStudy = {
   gallery?: string[];
   screenshotsBefore?: string[];
   screenshotsAfter?: string[];
-  impactMetrics?: Array<{ label?: string; value?: string; suffix?: string; variant?: string }>;
+  /** Métricas con número. `before` es opcional (antes/después). */
+  impactMetrics?: Array<{
+    label?: string;
+    value?: string;
+    before?: string;
+    suffix?: string;
+    variant?: string;
+  }>;
+  /** Frase de resultado con número para el encabezado. */
+  headline?: string;
+  /** Servicio contratado, p. ej. "Landing page". */
+  service?: string;
+  /** Logo del cliente (bajo /public). */
+  logo?: string;
+  /** Pasos de "lo que hicimos", con captura opcional. */
+  steps?: Array<{ title: string; text?: string; image?: string; imageAlt?: string }>;
+  testimonial?: {
+    quote: string;
+    name: string;
+    role?: string;
+    photo?: string;
+  };
   problem?: string[] | string;
   results?: string[] | string;
   order?: number;
@@ -149,17 +183,17 @@ export type Post = {
   tags?: Tag[];
 };
 
-export interface ContactSectionContent {
+interface BaseSectionContent {
   eyebrow: string;
   title: string;
   description: string;
+}
+
+export interface ContactSectionContent extends BaseSectionContent {
   socialLinks: SocialLink[];
 }
 
-export type ContactSectionConfig = {
-  eyebrow: string;
-  title: string;
-  description: string;
+export type ContactSectionConfig = BaseSectionContent & {
   socialLinks?: SocialLink[];
   sectionId?: string;
   whatsappMessage?: string;
@@ -200,23 +234,11 @@ export type ProcessSectionContent = {
   steps: ProcessStep[];
 };
 
-export interface ReviewsSectionContent {
-  eyebrow: string;
-  title: string;
-  description: string;
-}
+export interface ReviewsSectionContent extends BaseSectionContent {}
 
-export interface FaqSectionContent {
-  eyebrow: string;
-  title: string;
-  description: string;
-}
+export interface FaqSectionContent extends BaseSectionContent {}
 
-export interface HeroSectionContent {
-  eyebrow: string;
-  title: string;
-  description: string;
-}
+export interface HeroSectionContent extends BaseSectionContent {}
 
 export type PageCta = {
   label: string;
@@ -308,7 +330,7 @@ export type MarketingPageContent = {
     title: string;
     description: string;
   };
-  plans: MarketingPlan[];
+  plans?: MarketingPlan[];
   trust: TrustSection;
   useCasesSection?: UseCasesSectionContent;
   processSection?: ProcessSectionContent;
