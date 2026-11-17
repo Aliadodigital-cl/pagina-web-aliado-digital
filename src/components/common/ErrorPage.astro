@@ -1,0 +1,98 @@
+---
+/**
+ * Plantilla para las páginas de error (404, 500). nginx las sirve con
+ * `error_page`, así que deben funcionar desde cualquier ruta: todos los
+ * enlaces y recursos son absolutos.
+ */
+import { Icon } from "astro-icon/components";
+import Layout from "../../layouts/Layout.astro";
+import Footer from "../layout/Footer.astro";
+import Navbar from "../layout/Navbar.astro";
+import { fetchSiteSettings } from "../../lib/api/services";
+import { getWhatsAppUrl } from "../../config/contact";
+
+interface Props {
+  code: string;
+  title: string;
+  text: string;
+  whatsappMessage: string;
+}
+
+const { code, title, text, whatsappMessage } = Astro.props;
+const siteSettings = await fetchSiteSettings();
+const whatsappUrl = getWhatsAppUrl(whatsappMessage, siteSettings.whatsappNumber);
+
+const atajos = [
+  { href: "/desarrollo/", icon: "mdi:monitor-cellphone", label: "Páginas web", text: "Sitios rápidos que traen clientes." },
+  { href: "/marketing-digital/", icon: "mdi:bullhorn-outline", label: "Marketing digital", text: "Redes, anuncios y contenido." },
+  { href: "/planes/", icon: "mdi:tag-outline", label: "Planes y precios", text: "Elige el plan para tu negocio." },
+  { href: "/casos/", icon: "mdi:briefcase-outline", label: "Casos", text: "Proyectos que ya hicimos." },
+  { href: "/blog/", icon: "mdi:book-open-variant", label: "Blog", text: "Guías para vender más en internet." },
+];
+---
+
+<Layout title={title} description={text} siteSettings={siteSettings} noindex>
+  <Navbar siteSettings={siteSettings} />
+  <main class="section-shell py-16 sm:py-24">
+    <section class="mx-auto max-w-2xl text-center">
+      <p
+        aria-hidden="true"
+        class="bg-gradient-to-br from-primary to-accent bg-clip-text font-display text-[7rem] font-extrabold leading-none tracking-tight text-transparent sm:text-[9rem]"
+      >
+        {code}
+      </p>
+      <h1 class="mt-4 text-3xl font-bold text-content sm:text-4xl">{title}</h1>
+      <p class="mt-4 text-lg text-muted">{text}</p>
+
+      <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <a
+          href="/"
+          class="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-base font-semibold text-contrast shadow-lg transition hover:shadow-xl sm:w-auto"
+        >
+          <Icon name="mdi:home-outline" class="h-5 w-5" aria-hidden="true" />
+          Volver al inicio
+        </a>
+        {
+          whatsappUrl && (
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-base font-semibold text-white shadow-lg transition hover:shadow-xl sm:w-auto"
+            >
+              <Icon name="simple-icons:whatsapp" class="h-5 w-5" aria-hidden="true" />
+              Escríbenos por WhatsApp
+            </a>
+          )
+        }
+      </div>
+    </section>
+
+    <nav aria-label="Secciones del sitio" class="mx-auto mt-16 max-w-4xl">
+      <p class="text-center text-sm font-semibold uppercase tracking-wider text-muted">
+        Quizás buscabas
+      </p>
+      <ul class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          atajos.map((a) => (
+            <li>
+              <a
+                href={a.href}
+                class="group flex h-full items-start gap-4 rounded-2xl border border-border bg-card p-5 transition hover:-translate-y-0.5 hover:border-primary/50 hover:shadow-soft"
+              >
+                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-highlight">
+                  <Icon name={a.icon} class="h-6 w-6" aria-hidden="true" />
+                </span>
+                <span>
+                  <span class="block font-semibold text-content group-hover:text-highlight">{a.label}</span>
+                  <span class="mt-1 block text-sm text-muted">{a.text}</span>
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </main>
+  <Footer siteSettings={siteSettings} />
+</Layout>
