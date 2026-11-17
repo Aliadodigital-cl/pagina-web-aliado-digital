@@ -688,6 +688,75 @@
       "siteUrl": null,
       "order": 6,
       "service": "Sistema a medida"
+    },
+    {
+      "slug": "asa-tecnic",
+      "clientName": "ASA Tecnic",
+      "title": "Web oficial y sistema de recepción de equipos",
+      "industry": "Servicio técnico",
+      "city": "Santiago",
+      "summary": "Para ASA Tecnic, servicio técnico oficial Sony con más de 37 años reparando cámaras y lentes, desarrollamos su nueva página web y un sistema interno de recepción de equipos: guías en PDF con código de barras, seguimiento por estado y un panel con la operación del taller.",
+      "coverImage": "/images/portfolio/cases/asatecnic.webp",
+      "coverImageMobile": "/images/portfolio/cases/asatecnic-movil.webp",
+      "beforeTitle": "Antes",
+      "afterTitle": "Después",
+      "beforePoints": [
+        {
+          "text": "Necesitaban comunicar con claridad su respaldo como servicio técnico oficial Sony y su trayectoria",
+          "tone": "warning"
+        },
+        {
+          "text": "La recepción de cámaras y lentes dependía de registros manuales, sin trazabilidad del estado de cada equipo",
+          "tone": "danger"
+        },
+        {
+          "text": "Buscar una orden o saber cuántos equipos había en taller tomaba tiempo",
+          "tone": "warning"
+        }
+      ],
+      "afterPoints": [
+        {
+          "text": "Web con sus servicios (cámaras, lentes, limpieza de sensor y mantenimiento CLA), proceso, garantía legal, capacitaciones y blog, con CTA a revisión técnica y WhatsApp",
+          "tone": "success"
+        },
+        {
+          "text": "Sistema de recepción con ficha de cliente y equipo (marca, modelo, cámara o lente) y guía en PDF con código de barras lista para imprimir",
+          "tone": "success"
+        },
+        {
+          "text": "Seguimiento por estado (recepcionada, presupuestada, aprobada, reparada y retirada) con búsqueda por número de guía",
+          "tone": "success"
+        },
+        {
+          "text": "Panel con las recepciones de los últimos 7 y 30 días y los equipos por estado",
+          "tone": "success"
+        }
+      ],
+      "impactTags": [
+        {
+          "text": "Respaldo Sony visible",
+          "variant": "blue"
+        },
+        {
+          "text": "Trazabilidad por equipo",
+          "variant": "green"
+        },
+        {
+          "text": "Guías listas para imprimir",
+          "variant": "orange"
+        },
+        {
+          "text": "Operación centralizada",
+          "variant": "purple"
+        }
+      ],
+      "ctaPrimaryType": "contact",
+      "ctaPrimaryLabel": "Quiero un sistema para mi negocio",
+      "siteUrl": "https://asatecnic.cl",
+      "order": 7,
+      "featured": true,
+      "service": "Web + sistema a medida",
+      "logo": "/images/logos/asatecnic.webp"
     }
   ],
   "reviews": [

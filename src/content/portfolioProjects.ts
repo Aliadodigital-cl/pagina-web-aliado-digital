@@ -85,4 +85,10 @@ export const companies: Company[] = [
     logo: "/images/logos/asatecnic.webp",
     href: "https://asatecnic.cl/",
   },
+  {
+    id: "prime-club",
+    name: "Prime Club",
+    logo: "/images/logos/prime-club.webp",
+    href: "https://primeclub.cl/",
+  },
 ];
