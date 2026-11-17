@@ -369,7 +369,7 @@
       "ctaPrimaryType": "contact",
       "ctaPrimaryLabel": "Quiero una landing premium",
       "siteUrl": "https://clinicamontblanc.cl",
-      "order": 1,
+      "order": 4,
       "featured": true,
       "service": "Landing page",
       "logo": "/images/logos/montblanc.webp"
@@ -430,7 +430,7 @@
       "ctaPrimaryType": "contact",
       "ctaPrimaryLabel": "Quiero una vitrina inmobiliaria",
       "siteUrl": "https://propiedadesarenas.cl",
-      "order": 2,
+      "order": 3,
       "featured": true,
       "service": "Landing page",
       "logo": "/images/logos/propiedades-arenas.webp"
@@ -486,7 +486,7 @@
       "ctaPrimaryType": "contact",
       "ctaPrimaryLabel": "Quiero impulsar mis redes con estrategia",
       "siteUrl": "https://www.instagram.com/ansarautomotriz/",
-      "order": 3,
+      "order": 1,
       "featured": true,
       "service": "Marketing digital",
       "headline": "Un promedio de 80 a 160+ clientes potenciales escribiendo por redes sociales",
@@ -553,7 +553,7 @@
       "ctaPrimaryType": "contact",
       "ctaPrimaryLabel": "Quiero un plan mixto para mi consulta",
       "siteUrl": "https://drharaldziller.cl/",
-      "order": 4,
+      "order": 5,
       "featured": false,
       "service": "Web + presencia digital",
       "logo": "/images/logos/dr-harald-ziller.webp"
@@ -618,7 +618,7 @@
       "ctaPrimaryType": "contact",
       "ctaPrimaryLabel": "Quiero una web para mi negocio",
       "siteUrl": "https://elfiorentino.vercel.app/",
-      "order": 5,
+      "order": 7,
       "featured": true,
       "service": "Página web",
       "logo": "/images/logos/muebleria-florentino.webp"
@@ -753,7 +753,7 @@
       "ctaPrimaryType": "contact",
       "ctaPrimaryLabel": "Quiero un sistema para mi negocio",
       "siteUrl": "https://asatecnic.cl",
-      "order": 7,
+      "order": 2,
       "featured": true,
       "service": "Web + sistema a medida",
       "logo": "/images/logos/asatecnic.webp"
