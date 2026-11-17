@@ -149,7 +149,7 @@ const breadcrumbSchema = {
                 {[row.presencia, row.crecimiento, row.socio].map((value, i) => (
                   <td class:list={["p-4 text-center", planesMensuales[i]?.recomendado && "bg-primary/5"]}>
                     {value === true ? (
-                      <Icon name="lucide:check" class="mx-auto h-5 w-5 text-accent" aria-label="Incluido" />
+                      <Icon name="lucide:check" class="mx-auto h-5 w-5 text-link" aria-label="Incluido" />
                     ) : value === false ? (
                       <span class="text-muted/60" aria-label="No incluido">—</span>
                     ) : (
@@ -178,7 +178,7 @@ const breadcrumbSchema = {
           <ul class="mt-4 space-y-3 text-sm text-muted">
             {reglasPlanes.map((regla) => (
               <li class="flex items-start gap-3">
-                <Icon name="lucide:info" class="mt-0.5 h-4 w-4 flex-shrink-0 text-accent" aria-hidden="true" />
+                <Icon name="lucide:info" class="mt-0.5 h-4 w-4 flex-shrink-0 text-link" aria-hidden="true" />
                 <span>{regla}</span>
               </li>
             ))}
@@ -195,7 +195,7 @@ const breadcrumbSchema = {
               href={whatsappUrl}
               target="_blank"
               rel="noopener"
-              class="inline-flex w-fit items-center gap-2 rounded-full bg-[#25D366] px-6 py-3 font-semibold text-white shadow-soft transition hover:shadow-lg"
+              class="inline-flex w-fit items-center gap-2 rounded-full bg-whatsapp px-6 py-3 font-semibold text-white shadow-soft transition hover:shadow-lg"
             >
               <Icon name="simple-icons:whatsapp" class="h-5 w-5" aria-hidden="true" />
               Escribir por WhatsApp

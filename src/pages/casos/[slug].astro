@@ -195,7 +195,7 @@ const fichaRows = [
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-sm font-semibold text-white shadow-soft transition hover:shadow-lg"
+                class="inline-flex items-center justify-center gap-2 rounded-full bg-whatsapp px-6 py-3 text-sm font-semibold text-white shadow-soft transition hover:shadow-lg"
               >
                 <Icon name="simple-icons:whatsapp" class="h-4 w-4" aria-hidden="true" />
                 Quiero algo así para mi negocio
@@ -256,7 +256,7 @@ const fichaRows = [
             <ul class="mt-5 space-y-3 text-content">
               {problemPoints.map((text) => (
                 <li class="flex items-start gap-3">
-                  <Icon name="lucide:circle-alert" class="mt-0.5 h-5 w-5 shrink-0 text-rose-500" aria-hidden="true" />
+                  <Icon name="lucide:circle-alert" class="mt-0.5 h-5 w-5 shrink-0 text-accent-ink" aria-hidden="true" />
                   <span>{text}</span>
                 </li>
               ))}
@@ -308,7 +308,7 @@ const fichaRows = [
     {testimonial && (
       <section class="section-shell pb-16">
         <figure class="mx-auto max-w-3xl rounded-2xl border border-border/70 bg-card p-8 text-center sm:p-10">
-          <Icon name="lucide:quote" class="mx-auto h-8 w-8 text-accent" aria-hidden="true" />
+          <Icon name="lucide:quote" class="mx-auto h-8 w-8 text-accent-ink" aria-hidden="true" />
           <blockquote class="mt-4 text-xl font-medium leading-relaxed text-content [text-wrap:pretty]">
             “{testimonial.quote}”
           </blockquote>
@@ -349,7 +349,7 @@ const fichaRows = [
                   href={siteLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="break-all text-accent hover:underline dark:text-highlight"
+                  class="break-all text-link hover:underline"
                 >
                   {siteLabel}
                 </a>
@@ -384,7 +384,7 @@ const fichaRows = [
             <Icon name="lucide:arrow-right" class="h-5 w-5 shrink-0 text-muted transition group-hover:translate-x-1 group-hover:text-content" aria-hidden="true" />
           </a>
         )}
-        <div class="flex flex-col justify-center gap-4 rounded-2xl bg-slate-900 p-6 text-white sm:p-8">
+        <div class="flex flex-col justify-center gap-4 cta-panel rounded-2xl p-6 text-white sm:p-8">
           <p class="text-xl font-semibold">¿Quieres algo así para tu negocio?</p>
           <p class="text-white/70">Cuéntanos qué necesitas y te respondemos en 1 día hábil.</p>
           {whatsappUrl && (
@@ -392,7 +392,7 @@ const fichaRows = [
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex w-fit items-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-sm font-semibold text-white transition hover:shadow-lg"
+              class="inline-flex w-fit items-center gap-2 rounded-full bg-whatsapp px-6 py-3 text-sm font-semibold text-white transition hover:shadow-lg"
             >
               <Icon name="simple-icons:whatsapp" class="h-4 w-4" aria-hidden="true" />
               Quiero algo así para mi negocio

@@ -58,7 +58,7 @@ const atajos = [
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-base font-semibold text-white shadow-lg transition hover:shadow-xl sm:w-auto"
+              class="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-whatsapp px-6 py-3 text-base font-semibold text-white shadow-lg transition hover:shadow-xl sm:w-auto"
             >
               <Icon name="simple-icons:whatsapp" class="h-5 w-5" aria-hidden="true" />
               Escríbenos por WhatsApp
@@ -80,11 +80,11 @@ const atajos = [
                 href={a.href}
                 class="group flex h-full items-start gap-4 rounded-2xl border border-border bg-card p-5 transition hover:-translate-y-0.5 hover:border-primary/50 hover:shadow-soft"
               >
-                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-highlight">
+                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-link">
                   <Icon name={a.icon} class="h-6 w-6" aria-hidden="true" />
                 </span>
                 <span>
-                  <span class="block font-semibold text-content group-hover:text-highlight">{a.label}</span>
+                  <span class="block font-semibold text-content group-hover:text-link">{a.label}</span>
                   <span class="mt-1 block text-sm text-muted">{a.text}</span>
                 </span>
               </a>

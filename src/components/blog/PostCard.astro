@@ -23,7 +23,7 @@ const minutos = minutosLectura(post.body ?? "");
 >
   <div
     class:list={[
-      "post-cover relative overflow-hidden",
+      "bg-brand-gradient relative overflow-hidden",
       destacado ? "aspect-[16/9] lg:aspect-auto lg:w-1/2" : "aspect-[16/9]",
     ]}
   >
@@ -60,7 +60,7 @@ const minutos = minutosLectura(post.body ?? "");
   </div>
 
   <div class:list={["flex flex-1 flex-col gap-3 p-6", destacado && "lg:justify-center lg:p-10"]}>
-    <p class="text-xs font-semibold uppercase tracking-[0.18em] text-accent dark:text-highlight">
+    <p class="text-xs font-semibold uppercase tracking-[0.18em] text-accent-ink">
       {categoria?.nombre}
     </p>
     <h3
@@ -80,8 +80,3 @@ const minutos = minutosLectura(post.body ?? "");
   </div>
 </a>
 
-<style>
-  .post-cover {
-    background: linear-gradient(135deg, rgb(var(--color-primary)) 0%, rgb(20 40 95) 100%);
-  }
-</style>

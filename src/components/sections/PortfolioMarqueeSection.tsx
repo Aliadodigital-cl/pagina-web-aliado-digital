@@ -37,7 +37,7 @@ const CompanyCard = ({
 }) => {
   const cardContent = (
     <figure className="flex flex-col gap-3">
-      <div className="flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-[1.75rem] bg-white/80 p-6 shadow-lg ring-1 ring-border/60 transition-shadow duration-300 group-hover:shadow-2xl dark:bg-white/[0.06]">
+      <div className="flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-[1.75rem] bg-card p-6 shadow-soft ring-1 ring-border/60 transition-shadow duration-300 group-hover:shadow-featured">
         <img
           src={company.logo}
           alt={`Logo de ${company.name}`}
@@ -54,7 +54,7 @@ const CompanyCard = ({
   );
 
   const liClasses = [
-    "group cursor-pointer rounded-[2rem] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-highlight focus-visible:ring-offset-4",
+    "group cursor-pointer rounded-[2rem] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4",
     variant === "marquee" ? "w-[240px] flex-shrink-0" : "w-full",
     className,
   ]
@@ -391,7 +391,7 @@ const PortfolioMarqueeSection: React.FC<PortfolioMarqueeSectionProps> = ({
               onClick={toggleGrid}
               aria-expanded={isGridMounted}
               aria-controls={gridId}
-              className="inline-flex items-center justify-center gap-2 rounded-2xl border border-border bg-card px-6 py-3 text-center text-sm font-semibold tracking-[0.01em] text-content shadow-sm transition-colors duration-200 hover:bg-surface-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-highlight focus-visible:ring-offset-2"
+              className="inline-flex items-center justify-center gap-2 rounded-2xl border border-border bg-card px-6 py-3 text-center text-sm font-semibold tracking-[0.01em] text-content shadow-sm transition-colors duration-200 hover:bg-surface-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
             >
               <span>{isGridMounted ? hideAllLabel : showAllLabel}</span>
               <svg

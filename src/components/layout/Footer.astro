@@ -42,7 +42,7 @@ const processedNavLinks = navLinks.map((link) => ({
 }));
 ---
 
-<footer class="bg-slate-900 text-white">
+<footer class="bg-secondary text-white">
   <div class="container mx-auto px-6 sm:px-8 pt-16 pb-12">
     <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
       <!-- Column 1: Logo and Info -->
@@ -66,13 +66,13 @@ const processedNavLinks = navLinks.map((link) => ({
 
           <span>{siteSettings.siteName}</span>
         </a>
-        <p class="mt-4 text-sm text-slate-400">
+        <p class="mt-4 text-sm text-white/60">
           {siteSettings.footerText}
         </p>
 
         <!-- Información legal (visible para verificación de empresa) -->
-        <div class="mt-6 space-y-1 text-xs leading-relaxed text-slate-500">
-          <p class="font-semibold tracking-wide text-slate-400">
+        <div class="mt-6 space-y-1 text-xs leading-relaxed text-white/45">
+          <p class="font-semibold tracking-wide text-white/60">
             Información legal
           </p>
           <p>{LEGAL_INFO.legalName}</p>
@@ -80,7 +80,7 @@ const processedNavLinks = navLinks.map((link) => ({
           <p>{LEGAL_INFO.address.full}</p>
           <a
             href={LEGAL_INFO.pageHref}
-            class="mt-1 inline-block text-slate-400 underline underline-offset-2 transition-colors hover:text-white"
+            class="mt-1 inline-block text-white/60 underline underline-offset-2 transition-colors hover:text-white"
           >
             Datos de la empresa
           </a>
@@ -90,7 +90,7 @@ const processedNavLinks = navLinks.map((link) => ({
       <!-- Column 2: Navigation -->
       <div>
         <h3
-          class="text-sm font-semibold tracking-wider uppercase text-slate-300"
+          class="text-sm font-semibold tracking-wider uppercase text-white/85"
         >
           Navegación
         </h3>
@@ -100,7 +100,7 @@ const processedNavLinks = navLinks.map((link) => ({
               <li>
                 <a
                   href={link.href}
-                  class="text-slate-400 transition-colors hover:text-white"
+                  class="text-white/60 transition-colors hover:text-white"
                 >
                   {link.label}
                 </a>
@@ -110,7 +110,7 @@ const processedNavLinks = navLinks.map((link) => ({
           <li>
             <a
               href="/#faq"
-              class="text-slate-400 transition-colors hover:text-white"
+              class="text-white/60 transition-colors hover:text-white"
             >
               Preguntas frecuentes
             </a>
@@ -121,7 +121,7 @@ const processedNavLinks = navLinks.map((link) => ({
       <!-- Column 3: Legal -->
       <div>
         <h3
-          class="text-sm font-semibold tracking-wider uppercase text-slate-300"
+          class="text-sm font-semibold tracking-wider uppercase text-white/85"
         >
           Legal
         </h3>
@@ -131,7 +131,7 @@ const processedNavLinks = navLinks.map((link) => ({
               <li>
                 <a
                   href={`/${link.slug}`}
-                  class="text-slate-400 transition-colors hover:text-white"
+                  class="text-white/60 transition-colors hover:text-white"
                 >
                   {link.title}
                 </a>
@@ -141,7 +141,7 @@ const processedNavLinks = navLinks.map((link) => ({
           <li>
             <a
               href={LEGAL_INFO.pageHref}
-              class="text-slate-400 transition-colors hover:text-white"
+              class="text-white/60 transition-colors hover:text-white"
             >
               Información legal
             </a>
@@ -152,7 +152,7 @@ const processedNavLinks = navLinks.map((link) => ({
       <!-- Column 4: Social -->
       <div>
         <h3
-          class="text-sm font-semibold tracking-wider uppercase text-slate-300"
+          class="text-sm font-semibold tracking-wider uppercase text-white/85"
         >
           Redes
         </h3>
@@ -164,7 +164,7 @@ const processedNavLinks = navLinks.map((link) => ({
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Visita nuestro perfil de ${link.name}`}
-                class="text-slate-400 transition-colors hover:text-white"
+                class="text-white/60 transition-colors hover:text-white"
               >
                 <Icon name={link.icon} class="h-6 w-6" />
               </a>
@@ -175,7 +175,7 @@ const processedNavLinks = navLinks.map((link) => ({
         <!-- Site-wide links to the city landings: they are the entry points
              for local search, so every page should point at them. -->
         <h3
-          class="mt-8 text-sm font-semibold tracking-wider uppercase text-slate-300"
+          class="mt-8 text-sm font-semibold tracking-wider uppercase text-white/85"
         >
           Zonas
         </h3>
@@ -185,7 +185,7 @@ const processedNavLinks = navLinks.map((link) => ({
               <li>
                 <a
                   href={`/diseno-web-${city.slug}`}
-                  class="text-slate-400 transition-colors hover:text-white"
+                  class="text-white/60 transition-colors hover:text-white"
                 >
                   Diseño web en {city.city}
                 </a>
@@ -198,9 +198,9 @@ const processedNavLinks = navLinks.map((link) => ({
   </div>
 
   <!-- Bottom Bar -->
-  <div class="border-t border-slate-800">
+  <div class="border-t border-white/10">
     <div class="container mx-auto px-6 sm:px-8 py-6">
-      <p class="text-center text-sm text-slate-500">
+      <p class="text-center text-sm text-white/45">
         &copy; {new Date().getFullYear()}
         {siteSettings.siteName}. Todos los derechos reservados.
       </p>

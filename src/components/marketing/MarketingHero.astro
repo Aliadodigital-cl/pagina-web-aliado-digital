@@ -46,7 +46,7 @@ const items = value.items ?? [];
     ) : null}
   </div>
 
-  <div class="absolute inset-0 z-10 bg-gradient-to-t from-black/70 via-black/50 to-transparent"></div>
+  <div class="absolute inset-0 z-10 bg-gradient-to-t from-secondary/90 via-secondary/60 to-secondary/20"></div>
   <div class="absolute inset-0 z-10 backdrop-blur-[2px]"></div>
 
   <div class="hero-safe-offset section-shell relative z-20 flex min-h-[100svh] items-center pb-24 sm:pb-28 lg:pb-32">
@@ -71,7 +71,7 @@ const items = value.items ?? [];
                 href={primaryCta.href}
                 target={isExternalCta ? "_blank" : undefined}
                 rel={isExternalCta ? "noopener noreferrer" : undefined}
-                class="inline-flex w-full min-w-[240px] items-center justify-center gap-2 rounded-full bg-white px-7 py-3 text-sm font-semibold text-slate-900 shadow-lg shadow-black/20 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/90 sm:w-auto sm:min-w-[260px]"
+                class="inline-flex w-full min-w-[240px] items-center justify-center gap-2 rounded-full bg-white px-7 py-3 text-sm font-semibold text-secondary shadow-lg shadow-black/20 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/90 sm:w-auto sm:min-w-[260px]"
               >
                 {showGoogleIcon ? <GoogleG size={16} /> : null}
                 <span>{primaryCta.label}</span>
@@ -102,15 +102,15 @@ const items = value.items ?? [];
               labelText.includes("con método");
 
             const cardTone = isWithoutSystem
-              ? "border-rose-300/50 bg-rose-500/25 hover:border-rose-200/80"
+              ? "border-white/15 bg-white/10 hover:border-white/25"
               : isMethod
-                ? "border-emerald-300/50 bg-emerald-500/25 hover:border-emerald-200/80"
-                : "border-white/20 bg-white/25 hover:border-white/35";
+                ? "border-white/30 bg-primary/45 hover:border-white/45"
+                : "border-white/20 bg-white/15 hover:border-white/35";
 
             const bulletTone = isWithoutSystem
-              ? "bg-rose-300/90"
+              ? "bg-white/40"
               : isMethod
-                ? "bg-emerald-300/90"
+                ? "bg-accent"
                 : "bg-white/70";
 
             return (

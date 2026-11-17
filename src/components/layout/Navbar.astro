@@ -96,7 +96,7 @@ const solutionsActive =
 // Clases según el estado (transparente sobre el hero vs. sólido).
 const fg = isTransparent ? "text-white group-[.scrolled]:text-content" : "text-content";
 const linkBase =
-  "relative inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60";
+  "relative inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60";
 const linkTone = isTransparent
   ? "text-white/85 hover:text-white hover:bg-white/10 group-[.scrolled]:text-content/75 group-[.scrolled]:hover:text-content group-[.scrolled]:hover:bg-content/5"
   : "text-content/75 hover:text-content hover:bg-content/5";
@@ -178,7 +178,7 @@ const barTone = isTransparent ? "bg-white group-[.scrolled]:bg-content" : "bg-co
                 <div class="flex flex-col">
                   <a
                     href={group.href}
-                    class="px-3 pb-2 pt-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-muted transition-colors hover:text-primary"
+                    class="px-3 pb-2 pt-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-muted transition-colors hover:text-link"
                   >
                     {group.title}
                   </a>
@@ -190,7 +190,7 @@ const barTone = isTransparent ? "bg-white group-[.scrolled]:bg-content" : "bg-co
                         pathname === item.href && "bg-surface-strong/60"
                       ]}
                     >
-                      <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-border bg-surface text-primary transition-colors group-hover/item:border-primary/30 group-hover/item:text-accent">
+                      <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-border bg-surface text-link transition-colors group-hover/item:border-primary/30 group-hover/item:text-accent-ink">
                         <Icon name={item.icon} class="h-[18px] w-[18px]" aria-hidden="true" />
                       </span>
                       <span class="flex flex-col">
@@ -212,7 +212,7 @@ const barTone = isTransparent ? "bg-white group-[.scrolled]:bg-content" : "bg-co
                 ¿No sabes por dónde partir?
                 <span class="text-muted">Te orientamos sin costo.</span>
               </span>
-              <span class="inline-flex items-center gap-1 font-semibold text-primary">
+              <span class="inline-flex items-center gap-1 font-semibold text-link">
                 Ver todas las soluciones
                 <Icon name="lucide:arrow-right" class="h-4 w-4" aria-hidden="true" />
               </span>
@@ -253,7 +253,7 @@ const barTone = isTransparent ? "bg-white group-[.scrolled]:bg-content" : "bg-co
       <a
         href={contactHref}
         class:list={[
-          "hidden sm:inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60",
+          "hidden sm:inline-flex items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60",
           ctaTone
         ]}
       >
@@ -327,7 +327,7 @@ const barTone = isTransparent ? "bg-white group-[.scrolled]:bg-content" : "bg-co
                 >
                   <Icon
                     name={item.icon}
-                    class="h-[18px] w-[18px] text-primary"
+                    class="h-[18px] w-[18px] text-link"
                     aria-hidden="true"
                   />
                   {item.label}
@@ -348,7 +348,7 @@ const barTone = isTransparent ? "bg-white group-[.scrolled]:bg-content" : "bg-co
               aria-current={link.isActive ? "page" : undefined}
               class:list={[
                 "mobile-nav-link flex items-center justify-between rounded-xl px-3 py-3 text-base font-semibold transition-colors hover:bg-surface-strong/70",
-                link.isActive && "bg-surface-strong/70 text-primary"
+                link.isActive && "bg-surface-strong/70 text-link"
               ]}
             >
               {link.label}
@@ -377,7 +377,7 @@ const barTone = isTransparent ? "bg-white group-[.scrolled]:bg-content" : "bg-co
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="mobile-nav-link flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-5 py-3.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#1ebe5a]"
+          class="mobile-nav-link flex w-full items-center justify-center gap-2 rounded-full bg-whatsapp px-5 py-3.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-whatsapp/90"
         >
           <Icon name="simple-icons:whatsapp" class="h-4 w-4" aria-hidden="true" />
           Escribir por WhatsApp

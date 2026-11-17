@@ -22,7 +22,7 @@ const descripcion = socio
   {socio?.foto ? (
     <img src={socio.foto} alt={nombre} class="h-14 w-14 shrink-0 rounded-full object-cover" loading="lazy" />
   ) : socio ? (
-    <span class="author-avatar flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-lg font-bold text-white">
+    <span class="bg-brand-gradient flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-lg font-bold text-white">
       {iniciales(nombre)}
     </span>
   ) : (
@@ -42,8 +42,3 @@ const descripcion = socio
   </div>
 </div>
 
-<style>
-  .author-avatar {
-    background: linear-gradient(135deg, rgb(var(--color-primary)) 0%, rgb(20 40 95) 100%);
-  }
-</style>

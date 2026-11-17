@@ -58,7 +58,7 @@ const companyData: Array<{ label: string; value: string; href?: string }> = [
 >
   <Navbar siteSettings={siteSettings} />
   <main class="section-shell py-16 space-y-6 hero-safe-offset">
-    <p class="pill w-fit bg-primary/10 border-primary/40 text-highlight">
+    <p class="pill w-fit bg-primary/10 border-primary/40 text-link">
       Legal
     </p>
     <h1 class="text-3xl sm:text-4xl font-bold text-content">
@@ -82,7 +82,7 @@ const companyData: Array<{ label: string; value: string; href?: string }> = [
                 {item.href ? (
                   <a
                     href={item.href}
-                    class="text-highlight underline underline-offset-2 transition-colors hover:opacity-80"
+                    class="text-link underline underline-offset-2 transition-colors hover:opacity-80"
                   >
                     {item.value}
                   </a>

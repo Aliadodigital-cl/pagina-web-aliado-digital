@@ -31,7 +31,7 @@ const siteSettings = await fetchSiteSettings();
 <Layout title={title} description={description} siteSettings={siteSettings}>
   <Navbar siteSettings={siteSettings} />
   <main class="section-shell py-16 space-y-6">
-    <p class="pill w-fit bg-primary/10 border-primary/40 text-highlight">Legal</p>
+    <p class="pill w-fit bg-primary/10 border-primary/40 text-link">Legal</p>
     <h1 class="text-3xl sm:text-4xl font-bold text-content">{title}</h1>
     <p class="text-sm text-muted">Última actualización: {LEGAL.lastUpdated}</p>
 
@@ -44,7 +44,7 @@ const siteSettings = await fetchSiteSettings();
         {
           sections.map((s) => (
             <li>
-              <a href={`#${s.id}`} class="hover:text-highlight">
+              <a href={`#${s.id}`} class="hover:text-link">
                 {s.title}
               </a>
             </li>

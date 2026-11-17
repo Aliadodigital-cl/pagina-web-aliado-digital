@@ -34,14 +34,14 @@ const waLink = `https://wa.me/${waDigits}?text=${encodeURIComponent(
 >
   <Navbar siteSettings={siteSettings} />
   <main class="section-shell py-16 space-y-6">
-    <p class="pill w-fit bg-primary/10 border-primary/40 text-highlight">
+    <p class="pill w-fit bg-primary/10 border-primary/40 text-link">
       Legal
     </p>
     <h1 class="text-3xl sm:text-4xl font-bold text-content">{pageTitle}</h1>
     <p class="text-sm text-muted">Última actualización: {LEGAL.lastUpdated}</p>
 
     <article
-      class="prose max-w-3xl text-content prose-headings:text-content prose-p:text-muted prose-a:text-highlight space-y-8"
+      class="prose max-w-3xl text-content prose-headings:text-content prose-p:text-muted prose-a:text-link space-y-8"
     >
       <p>
         {LEGAL.companyName} ("{LEGAL.brandName}", RUT {LEGAL.rut}) usa las

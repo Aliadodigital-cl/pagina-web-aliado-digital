@@ -39,15 +39,12 @@ const {
 
 <article
   class:list={[
-    "card-shine group relative flex h-full flex-col rounded-2xl border bg-card/90 p-6 shadow-sm transition-all duration-300",
-    "hover:-translate-y-0.5 hover:border-orange-300/85 hover:shadow-md dark:hover:border-orange-400/50",
-    featured
-      ? "is-featured border-amber-300/90 ring-1 ring-orange-300/45 ring-inset bg-gradient-to-b from-amber-100/65 via-card/95 to-card/95 shadow-md hover:shadow-lg dark:border-amber-400/25 dark:ring-orange-400/15 dark:from-amber-500/10 dark:via-card/98 dark:to-card/98"
-      : "border-orange-200/80 ring-1 ring-orange-200/35 ring-inset dark:border-border/70 dark:ring-0",
+    "card-shine group relative flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-soft",
+    featured ? "is-featured card-featured" : "hover:border-content/20",
   ]}
 >
   {featured && (
-    <span class="absolute right-6 top-6 z-10 rounded-full bg-orange-500 text-white px-3 py-1 text-xs font-semibold">
+    <span class="badge-accent absolute right-6 top-6 z-10">
       Recomendado
     </span>
   )}
@@ -80,7 +77,7 @@ const {
         <li class="flex items-start gap-3">
           <Icon
             name="lucide:check"
-            class="mt-0.5 h-4 w-4 flex-shrink-0 text-orange-500 dark:text-orange-400"
+            class="mt-0.5 h-4 w-4 flex-shrink-0 text-link"
             aria-hidden="true"
           />
           <span>{item}</span>
@@ -100,7 +97,7 @@ const {
           <li class="flex items-start gap-3">
             <Icon
               name="lucide:clipboard-check"
-              class="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-600 dark:text-amber-400"
+              class="mt-0.5 h-4 w-4 flex-shrink-0 text-muted"
               aria-hidden="true"
             />
             <span>{item}</span>
@@ -115,13 +112,18 @@ const {
         href={ctaHref}
         target={ctaHref.startsWith("http") ? "_blank" : undefined}
         rel={ctaHref.startsWith("http") ? "noopener" : undefined}
-        class="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-amber-500 via-orange-500 to-orange-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-orange-600/25 transition hover:from-amber-600 hover:via-orange-600 hover:to-orange-700 hover:shadow-xl dark:from-amber-600 dark:via-orange-600 dark:to-orange-700 dark:hover:from-amber-700 dark:hover:via-orange-700 dark:hover:to-orange-800 dark:shadow-orange-700/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/45 dark:focus-visible:ring-amber-400/45"
+        class:list={[
+          "inline-flex w-full items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40",
+          featured
+            ? "bg-primary text-contrast shadow-md shadow-primary/20 hover:bg-primary-deep"
+            : "border border-border text-content hover:border-primary/50 hover:text-link",
+        ]}
       >
         {ctaLabel}
       </a>
       <!-- <a
         href={compareHref}
-        class="inline-flex w-full items-center justify-center gap-2 rounded-full text-sm font-medium text-muted transition hover:text-content focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-highlight/30"
+        class="inline-flex w-full items-center justify-center gap-2 rounded-full text-sm font-medium text-muted transition hover:text-content focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30"
       >
         {compareLabel}
         <Icon name="lucide:arrow-right" class="h-4 w-4" aria-hidden="true" />
@@ -143,7 +145,7 @@ const {
     height: 100%;
     background: radial-gradient(
       420px circle at var(--mouse-x, -9999px) var(--mouse-y, -9999px),
-      rgba(251, 191, 36, 0.15),
+      rgb(var(--color-primary) / 0.16),
       transparent 40%
     );
     border-radius: inherit;

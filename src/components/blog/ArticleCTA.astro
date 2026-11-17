@@ -28,7 +28,7 @@ const destino = href ?? getWhatsAppUrl(mensaje) ?? "/#contacto";
 const etiqueta = label ?? (esWhatsApp ? "Escribir por WhatsApp" : "Ver más");
 ---
 
-<aside class="not-prose my-10 overflow-hidden rounded-2xl bg-slate-900 p-6 text-white sm:p-8">
+<aside class="not-prose my-10 overflow-hidden cta-panel rounded-2xl p-6 text-white sm:p-8">
   <p class="text-xl font-semibold">{title}</p>
   <p class="mt-2 text-white/70">{text}</p>
   <a
@@ -37,7 +37,7 @@ const etiqueta = label ?? (esWhatsApp ? "Escribir por WhatsApp" : "Ver más");
     rel={esWhatsApp ? "noopener noreferrer" : undefined}
     class:list={[
       "mt-5 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition hover:shadow-lg",
-      esWhatsApp ? "bg-[#25D366] text-white" : "bg-primary text-contrast",
+      esWhatsApp ? "bg-whatsapp text-white" : "bg-primary text-contrast",
     ]}
   >
     {esWhatsApp && <Icon name="simple-icons:whatsapp" class="h-4 w-4" aria-hidden="true" />}

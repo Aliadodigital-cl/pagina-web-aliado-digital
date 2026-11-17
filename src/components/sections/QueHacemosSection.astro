@@ -54,7 +54,7 @@ const lineas = [
 <section id="que-hacemos" class="py-16 lg:py-24">
   <div class="container mx-auto px-6 sm:px-8">
     <div class="mx-auto max-w-3xl text-center" data-reveal="fade-up">
-      <p class="text-xs font-semibold uppercase tracking-[0.24em] text-accent dark:text-highlight">
+      <p class="text-xs font-semibold uppercase tracking-[0.24em] text-accent-ink">
         Qué hacemos
       </p>
       <h2 class="mt-3 text-3xl font-bold tracking-tight text-content [text-wrap:balance] sm:text-4xl lg:text-5xl">
@@ -74,7 +74,7 @@ const lineas = [
           data-delay={String(index * 100)}
         >
           <!-- Visual: trabajo real sobre fondo de marca -->
-          <div class="brand-panel relative flex aspect-[16/10] items-end justify-center overflow-hidden px-6 pt-8 sm:px-10">
+          <div class="bg-brand-gradient relative flex aspect-[16/10] items-end justify-center overflow-hidden px-6 pt-8 sm:px-10">
             <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(255,255,255,0.18),transparent_55%)]" aria-hidden="true"></div>
             {linea.id === "web" ? (
               <DeviceMockup
@@ -85,9 +85,9 @@ const lineas = [
               />
             ) : (
               <div class="relative flex w-full max-w-lg items-end justify-center">
-                <div class="w-[46%] max-w-[210px] translate-y-6 rounded-[1.6rem] border border-slate-700/80 bg-slate-900 p-1.5 shadow-2xl">
-                  <div class="mx-auto mb-1 h-1 w-10 rounded-full bg-slate-700" aria-hidden="true"></div>
-                  <div class="aspect-[9/16] overflow-hidden rounded-[1.15rem] bg-slate-800">
+                <div class="w-[46%] max-w-[210px] translate-y-6 rounded-[1.6rem] border border-white/10 bg-secondary p-1.5 shadow-2xl">
+                  <div class="mx-auto mb-1 h-1 w-10 rounded-full bg-white/15" aria-hidden="true"></div>
+                  <div class="aspect-[9/16] overflow-hidden rounded-[1.15rem] bg-secondary-lift">
                     <img
                       src="/images/marketing/ansar/img.webp"
                       alt="Perfil de Instagram de Ansar gestionado por Aliado Digital"
@@ -98,12 +98,12 @@ const lineas = [
                   </div>
                 </div>
                 <div class="absolute left-0 top-[18%] hidden flex-col gap-3 sm:flex sm:left-[4%]">
-                  <span class="chip"><Icon name="simple-icons:meta" class="h-4 w-4" aria-hidden="true" /> Meta Ads</span>
-                  <span class="chip"><Icon name="simple-icons:googleads" class="h-4 w-4" aria-hidden="true" /> Google Ads</span>
+                  <span class="float-chip"><Icon name="simple-icons:meta" class="h-4 w-4" aria-hidden="true" /> Meta Ads</span>
+                  <span class="float-chip"><Icon name="simple-icons:googleads" class="h-4 w-4" aria-hidden="true" /> Google Ads</span>
                 </div>
                 <div class="absolute right-0 top-[30%] hidden flex-col gap-3 sm:flex sm:right-[4%]">
-                  <span class="chip"><Icon name="simple-icons:instagram" class="h-4 w-4" aria-hidden="true" /> Redes</span>
-                  <span class="chip"><Icon name="lucide:map-pin" class="h-4 w-4" aria-hidden="true" /> Google Maps</span>
+                  <span class="float-chip"><Icon name="simple-icons:instagram" class="h-4 w-4" aria-hidden="true" /> Redes</span>
+                  <span class="float-chip"><Icon name="lucide:map-pin" class="h-4 w-4" aria-hidden="true" /> Google Maps</span>
                 </div>
               </div>
             )}
@@ -119,7 +119,7 @@ const lineas = [
             <ul class="space-y-2.5 text-sm text-content">
               {linea.puntos.map((punto) => (
                 <li class="flex items-start gap-3">
-                  <Icon name="lucide:check" class="mt-0.5 h-4 w-4 shrink-0 text-accent dark:text-highlight" aria-hidden="true" />
+                  <Icon name="lucide:check" class="mt-0.5 h-4 w-4 shrink-0 text-link" aria-hidden="true" />
                   <span>{punto}</span>
                 </li>
               ))}
@@ -134,7 +134,7 @@ const lineas = [
               )}
               <a
                 href={linea.cta.href}
-                class="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-contrast shadow-lg shadow-primary/20 transition hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-highlight/40"
+                class="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-contrast shadow-lg shadow-primary/20 transition hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
               >
                 {linea.cta.label}
                 <Icon name="lucide:arrow-right" class="h-4 w-4" aria-hidden="true" />
@@ -142,7 +142,7 @@ const lineas = [
             </div>
 
             <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
-              <a href={linea.caso.href} class="font-medium text-accent hover:underline dark:text-highlight">{linea.caso.label}</a>
+              <a href={linea.caso.href} class="font-medium text-link hover:underline">{linea.caso.label}</a>
               <a href={linea.secundario.href} class="font-medium text-muted hover:text-content hover:underline">{linea.secundario.label}</a>
             </div>
           </div>
@@ -153,10 +153,7 @@ const lineas = [
 </section>
 
 <style>
-  .brand-panel {
-    background: linear-gradient(135deg, rgb(var(--color-primary)) 0%, rgb(20 40 95) 100%);
-  }
-  .chip {
-    @apply inline-flex items-center gap-2 rounded-full bg-white/95 px-3 py-1.5 text-xs font-semibold text-slate-900 shadow-lg shadow-black/20;
+  .float-chip {
+    @apply inline-flex items-center gap-2 rounded-full bg-white/95 px-3 py-1.5 text-xs font-semibold text-secondary shadow-lg shadow-black/20;
   }
 </style>

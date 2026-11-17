@@ -19,11 +19,11 @@ const hasExtraCases = sortedCases.length > initialVisible;
   <div class="container mx-auto px-6 sm:px-8">
     <div class="mx-auto mb-16 max-w-3xl text-center">
       <h2
-        class="text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-5xl"
+        class="text-4xl font-bold tracking-tight text-content sm:text-5xl"
       >
         Proyectos que ya están funcionando
       </h2>
-      <p class="mt-4 text-lg text-slate-600 dark:text-white/60">
+      <p class="mt-4 text-lg text-muted">
         Cada proyecto se construye en conjunto. Aquí tienes algunos trabajos donde se nota el antes y el después.
       </p>
     </div>
@@ -50,7 +50,7 @@ const hasExtraCases = sortedCases.length > initialVisible;
           <button
             id="cases-load-more"
             type="button"
-            class="inline-flex items-center justify-center rounded-2xl border border-slate-300 bg-white px-6 py-3 text-sm font-semibold tracking-[0.01em] text-slate-700 shadow-sm transition-colors duration-200 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 focus-visible:ring-offset-2 dark:border-white/20 dark:bg-white/10 dark:text-white dark:hover:bg-white/15 dark:focus-visible:ring-offset-slate-950"
+            class="inline-flex items-center justify-center rounded-2xl border border-border bg-card px-6 py-3 text-sm font-semibold tracking-[0.01em] text-content shadow-sm transition-colors duration-200 hover:bg-surface-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
           >
             Ver más casos
           </button>
@@ -61,7 +61,7 @@ const hasExtraCases = sortedCases.length > initialVisible;
     <div class="mt-6 flex justify-center">
       <a
         href="/casos"
-        class="inline-flex items-center gap-2 text-sm font-semibold text-accent hover:underline dark:text-highlight"
+        class="inline-flex items-center gap-2 text-sm font-semibold text-link hover:underline"
       >
         Ver todos los casos
         <span aria-hidden="true">→</span>

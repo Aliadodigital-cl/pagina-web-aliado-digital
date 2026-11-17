@@ -2,11 +2,6 @@
 import type { Service } from "../../lib/api/types";
 import { buildWhatsAppLink } from "../../lib/utils";
 import { Icon } from "astro-icon/components";
-import {
-  serviceCardMarketingAccents,
-  serviceCardMixedAccent,
-  serviceCardWebAccent
-} from "../../styles/accents";
 
 interface Props {
   service: Service;
@@ -14,6 +9,8 @@ interface Props {
   maxBenefits?: number;
 }
 
+// Un solo estilo de marca para todos los servicios (paleta A): el color no
+// distingue Desarrollo de Marketing; el rojo solo marca lo destacado.
 const { service, whatsappNumber, maxBenefits } = Astro.props as Props;
 const title = (service.title ?? "").trim();
 const whatItSolves = service.what_it_solves ?? "";
@@ -26,7 +23,7 @@ const benefits = service.benefits?.slice(0, maxBenefits ?? 3) ?? [];
 const isFeatured = Boolean(service.featured);
 const topBanner = (service.top_banner ?? "").trim();
 const bannerLabel = topBanner || (isFeatured ? "Más popular" : "");
-const iconName = service.icon || "lucide:gem"; // Default icon
+const iconName = service.icon || "lucide:gem";
 const price = (service.price ?? "").trim();
 const deliveryTime = (service.delivery_time ?? "").trim();
 const modality = (service.modality ?? "").trim();
@@ -34,22 +31,6 @@ const ctaLabel = (service.ctaLabel ?? "").trim() || "Cotizar este plan";
 const ctaHref = (service.ctaHref ?? "").trim();
 const variant = (service.variant ?? "web") as "web" | "marketing" | "mixed";
 const isMixed = variant === "mixed";
-const accentTone =
-  variant === "web" ? null : service.accent === "amber" ? "amber" : "orange";
-
-const accent =
-  variant === "web"
-    ? serviceCardWebAccent
-    : serviceCardMarketingAccents[accentTone ?? "orange"];
-
-const resolvedAccent = isMixed ? serviceCardMixedAccent : accent;
-const deliveryChipClass = isMixed
-  ? "bg-sky-500/10 text-sky-600 ring-sky-500/20 dark:bg-sky-400/10 dark:text-sky-300 dark:ring-sky-400/20"
-  : "bg-slate-100 text-slate-600 ring-slate-500/10 dark:bg-slate-400/10 dark:text-slate-400 dark:ring-slate-400/20";
-const mixedCardClass = isMixed ? "ring-1 ring-white/10" : "";
-
-const shineStyle =
-  variant === "web" ? undefined : `--shine-color: ${resolvedAccent.shine};`;
 // For maintenance, text is "Activación: ...", otherwise "Entrega: ..."
 const deliveryLabel =
   service.slug === "mantencion-ti-monitoreo" ? "Activación" : "Entrega";
@@ -57,50 +38,9 @@ const deliveryLabel =
 const linkHref = isMixed ? whatsappUrl : ctaHref || whatsappUrl || undefined;
 const isExternal = Boolean(linkHref?.startsWith("http"));
 const isDisabled = !linkHref;
-const isHomeDevelopmentPlansCard =
-  service.slug === "planes-desarrollo" && linkHref === "/desarrollo#planes";
-const isHomeMarketingPlansCard =
-  service.slug === "planes-marketing" && linkHref === "/marketing#planes";
-const isHomeMixedPlansCard = service.slug === "planes-mixto";
 
-const ctaBaseClass =
-  "cta-button inline-flex min-h-12 w-full cursor-pointer items-center justify-between gap-3 rounded-2xl px-5 py-3.5 text-lg font-semibold tracking-[0.01em] shadow-md ring-1 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg sm:min-h-11 sm:py-3 sm:text-base lg:min-h-10 lg:py-2.5 lg:text-sm 2xl:w-auto 2xl:justify-center";
-
-const mixedCtaButtonClass = isHomeMixedPlansCard
-  ? "relative overflow-hidden bg-gradient-to-r from-slate-200 via-slate-300 to-zinc-300 text-slate-900 ring-slate-300/65 shadow-lg shadow-slate-400/20 group-hover:from-slate-200 group-hover:via-slate-100 group-hover:to-zinc-200 dark:from-slate-600 dark:via-slate-700 dark:to-zinc-600 dark:text-white dark:ring-slate-500/55 dark:shadow-slate-950/45 dark:group-hover:from-slate-600 dark:group-hover:via-slate-700 dark:group-hover:to-zinc-600"
-  : "bg-gradient-to-r from-blue-600 to-amber-500 text-white ring-blue-300/35 shadow-lg shadow-blue-900/20 group-hover:from-blue-700 group-hover:to-amber-600";
-
-const ctaButtonClass = isMixed
-  ? mixedCtaButtonClass
-  : variant === "web"
-    ? isHomeDevelopmentPlansCard
-      ? "bg-gradient-to-r from-sky-300 via-blue-400 to-indigo-500 text-slate-900 dark:text-white ring-blue-300/45 shadow-lg shadow-blue-700/20 group-hover:from-sky-400 group-hover:via-blue-500 group-hover:to-indigo-600 dark:from-sky-500 dark:via-blue-600 dark:to-indigo-700 dark:group-hover:from-sky-600 dark:group-hover:via-blue-700 dark:group-hover:to-indigo-800"
-      : "bg-blue-600 text-white ring-blue-900/20 shadow-blue-900/15 group-hover:bg-blue-700"
-    : accentTone === "amber"
-      ? isHomeMarketingPlansCard
-        ? "bg-gradient-to-r from-amber-500 via-orange-500 to-orange-600 text-slate-900 dark:text-white ring-orange-300/45 shadow-lg shadow-orange-600/25 group-hover:from-amber-600 group-hover:via-orange-600 group-hover:to-orange-700 dark:from-amber-600 dark:via-orange-600 dark:to-orange-700 dark:ring-orange-400/45 dark:shadow-orange-700/30 dark:group-hover:from-amber-700 dark:group-hover:via-orange-700 dark:group-hover:to-orange-800"
-        : "bg-gradient-to-r from-amber-200 to-orange-300 text-slate-900 ring-orange-300/45 shadow-amber-900/10 group-hover:from-amber-300 group-hover:to-orange-400"
-      : "bg-gradient-to-r from-amber-200 to-orange-300 text-slate-900 ring-orange-300/45 shadow-amber-900/10 group-hover:from-amber-300 group-hover:to-orange-400";
-
-const ctaFocusClass = isMixed
-  ? isHomeMixedPlansCard
-    ? "group-focus-visible:ring-2 group-focus-visible:ring-slate-300/70 group-focus-visible:ring-offset-2 group-focus-visible:ring-offset-white dark:group-focus-visible:ring-slate-500/70 dark:group-focus-visible:ring-offset-slate-950"
-    : "group-focus-visible:ring-2 group-focus-visible:ring-blue-300 group-focus-visible:ring-offset-2 group-focus-visible:ring-offset-white dark:group-focus-visible:ring-offset-slate-950"
-  : variant === "web"
-    ? "group-focus-visible:ring-2 group-focus-visible:ring-blue-300 group-focus-visible:ring-offset-2 group-focus-visible:ring-offset-white dark:group-focus-visible:ring-offset-slate-950"
-    : "group-focus-visible:ring-2 group-focus-visible:ring-orange-300 group-focus-visible:ring-offset-2 group-focus-visible:ring-offset-white dark:group-focus-visible:ring-offset-slate-950";
-
-const ctaIconClass =
-  isHomeMixedPlansCard || isHomeMarketingPlansCard || isHomeDevelopmentPlansCard
-    ? "text-slate-900 dark:text-white"
-    : variant === "marketing" && accentTone === "amber"
-    ? "text-slate-950"
-    : variant === "web" || isMixed
-      ? "text-white"
-      : "text-slate-950";
-
-const ctaLabelClass = "text-left leading-tight";
-const ctaArrowClass = "cta-arrow ml-auto h-4 w-4 flex-shrink-0 transition-transform duration-200";
+const chipClass =
+  "inline-flex items-center rounded-md bg-surface-strong px-2 py-1 text-xs font-medium text-muted ring-1 ring-inset ring-border";
 ---
 
 <a
@@ -110,148 +50,77 @@ const ctaArrowClass = "cta-arrow ml-auto h-4 w-4 flex-shrink-0 transition-transf
   aria-disabled={isDisabled ? "true" : undefined}
   tabindex={isDisabled ? -1 : undefined}
   data-variant={variant}
-  data-accent={accentTone ?? undefined}
-  style={shineStyle}
-  class={`card-shine group relative z-0 flex h-full flex-col rounded-3xl border p-6 backdrop-blur-xl transition-all duration-300 lg:p-8 hover:scale-[1.02] shadow-lg hover:shadow-2xl
-  border-slate-900/10 bg-white/40 hover:border-slate-900/20 hover:!bg-white/60
-  dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20 dark:hover:!bg-white/[0.07]
-  ${mixedCardClass} ${isDisabled ? "pointer-events-none opacity-70" : ""}`}
+  class:list={[
+    "card-shine group relative z-0 flex h-full flex-col rounded-3xl border border-border bg-card p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-featured lg:p-8",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-surface",
+    isFeatured ? "card-featured" : "hover:border-content/20",
+    isDisabled && "pointer-events-none opacity-70",
+  ]}
 >
-  {
-    isMixed && (
-      <div class="pointer-events-none absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-[radial-gradient(620px_circle_at_15%_20%,rgba(56,189,248,0.20),transparent_60%)]" />
-        <div class="absolute inset-0 bg-[radial-gradient(660px_circle_at_85%_80%,rgba(251,146,60,0.18),transparent_60%)]" />
-        <div class="absolute inset-0 bg-[linear-gradient(135deg,rgba(56,189,248,0.08),rgba(251,146,60,0.08))] opacity-40 blur-2xl" />
-      </div>
-    )
-  }
-
   <div class="z-10 flex h-full flex-col">
-  {
-    bannerLabel && (
-      <span
-        class={`absolute right-6 top-6 z-10 inline-flex shrink-0 items-center rounded-full px-3 py-1 text-xs font-medium ring-1 ring-inset ${resolvedAccent.banner}`}
-      >
-        {bannerLabel}
-      </span>
-    )
-  }
+    {bannerLabel && <span class="badge-accent absolute right-6 top-6 z-10">{bannerLabel}</span>}
 
-  <div
-    class={`relative mb-6 flex h-12 w-12 items-center justify-center rounded-2xl border ${resolvedAccent.icon}`}
-  >
-    <Icon name={iconName} class="h-6 w-6" />
-  </div>
+    <div class="relative mb-6 flex h-12 w-12 items-center justify-center rounded-2xl border border-primary/20 bg-primary/10 text-link">
+      <Icon name={iconName} class="h-6 w-6" />
+    </div>
 
-  <h3
-    class="text-2xl font-semibold leading-snug tracking-tight text-slate-900 dark:text-white"
-  >
-    {title}
-  </h3>
+    <h3 class="text-2xl font-semibold leading-snug tracking-tight text-content">
+      {title}
+    </h3>
 
-  {
-    whatItSolves && (
-      <p class="mt-2 text-slate-600 dark:text-white/60">{whatItSolves}</p>
-    )
-  }
+    {whatItSolves && <p class="mt-2 text-muted">{whatItSolves}</p>}
 
-  {/* Chips for Delivery & Modality */}
-  <div class="mt-4 flex flex-wrap gap-2">
+    <div class="mt-4 flex flex-wrap gap-2">
+      {deliveryTime && <span class={chipClass}>{deliveryLabel}: {deliveryTime}</span>}
+      {modality && <span class={chipClass}>Modalidad: {modality}</span>}
+    </div>
+
     {
-      deliveryTime && (
-        <span
-          class={`inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ${deliveryChipClass}`}
-        >
-          {deliveryLabel}: {deliveryTime}
-        </span>
+      benefits.length > 0 && (
+        <ul class="mt-6 space-y-3 text-content/85">
+          {benefits.map((benefit) => (
+            <li class="flex items-start gap-3">
+              <Icon name="lucide:check-circle" class="mt-1 h-4 w-4 flex-shrink-0 text-link" />
+              <span>{benefit}</span>
+            </li>
+          ))}
+        </ul>
       )
     }
-    {
-      modality && (
-        <span
-          class={`inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ${resolvedAccent.modality}`}
-        >
-          Modalidad: {modality}
-        </span>
-      )
-    }
-  </div>
 
-  {
-    benefits.length > 0 && (
-      <ul class="mt-6 space-y-3 text-slate-700 dark:text-white/80">
-        {benefits.map((benefit) => (
-          <li class="flex items-start gap-3">
-            <Icon
-              name="lucide:check-circle"
-              class={`mt-1 h-4 w-4 flex-shrink-0 ${resolvedAccent.check}`}
-            />
-            <span>{benefit}</span>
-          </li>
-        ))}
-      </ul>
-    )
-  }
-
-  <div class="mt-auto flex flex-col items-start gap-3 pt-8 2xl:flex-row 2xl:items-end 2xl:justify-between">
-    {
-      price && (
-        <div class="shrink-0">
-          <span class="text-[10px] font-semibold uppercase tracking-widest text-slate-500/80 dark:text-white/60">
-            {service.priceLabel ?? "Desde"}
-          </span>
-          <span class="mt-1 block text-lg font-semibold text-slate-900 dark:text-white">
-            {price}
-          </span>
-          <span class="block text-[10px] text-slate-500 dark:text-slate-400 mt-0.5 font-medium">
-            {service.priceNote ?? "+ IVA"}
-          </span>
-        </div>
-      )
-    }
-    <div
-      class={`${ctaBaseClass} ${ctaButtonClass} ${ctaFocusClass}`}
-    >
+    <div class="mt-auto flex flex-col items-start gap-3 pt-8 2xl:flex-row 2xl:items-end 2xl:justify-between">
       {
-        isHomeMixedPlansCard && (
-          <span
-            class="pointer-events-none absolute inset-0 rounded-2xl p-[2px] bg-gradient-to-r from-sky-500 via-blue-500 to-orange-500 opacity-90"
-            style="mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;-webkit-mask-composite:xor;"
-            aria-hidden="true"
-          />
+        price && (
+          <div class="shrink-0">
+            <span class="text-[10px] font-semibold uppercase tracking-widest text-muted">
+              {service.priceLabel ?? "Desde"}
+            </span>
+            <span class="mt-1 block text-lg font-semibold text-content">{price}</span>
+            <span class="mt-0.5 block text-[10px] font-medium text-muted">
+              {service.priceNote ?? "+ IVA"}
+            </span>
+          </div>
         )
       }
-      <span class={ctaLabelClass}>{ctaLabel}</span>
-      <Icon
-        name="lucide:arrow-right"
-        class={`${ctaArrowClass} ${ctaIconClass}`}
-      />
+      <div class="cta-button inline-flex min-h-12 w-full cursor-pointer items-center justify-between gap-3 rounded-2xl bg-primary px-5 py-3.5 text-lg font-semibold tracking-[0.01em] text-contrast shadow-md shadow-primary/20 transition-all duration-200 group-hover:bg-primary-deep sm:min-h-11 sm:py-3 sm:text-base lg:min-h-10 lg:py-2.5 lg:text-sm 2xl:w-auto 2xl:justify-center">
+        <span class="text-left leading-tight">{ctaLabel}</span>
+        <Icon name="lucide:arrow-right" class="cta-arrow ml-auto h-4 w-4 flex-shrink-0 transition-transform duration-200" />
+      </div>
     </div>
   </div>
-</div>
 </a>
 
 <style>
-  :root {
-    --shine-color: rgba(100, 116, 139, 0.1); /* slate-500 */
-  }
-  .dark {
-    --shine-color: rgba(125, 211, 252, 0.1); /* sky-300 */
-  }
   .card-shine {
     overflow: hidden;
   }
   .card-shine::after {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: radial-gradient(
       400px circle at var(--mouse-x, -9999px) var(--mouse-y, -9999px),
-      var(--shine-color),
+      rgb(var(--color-primary) / 0.08),
       transparent 40%
     );
     border-radius: inherit;
@@ -271,15 +140,14 @@ const ctaArrowClass = "cta-arrow ml-auto h-4 w-4 flex-shrink-0 transition-transf
   }
 
   @media (hover: hover) {
-    .cta-button:hover .cta-arrow {
+    .cta-button:hover .cta-arrow,
+    a:hover .cta-arrow {
       animation: cta-arrow-nudge 520ms ease-out 1;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .cta-button {
-      transition: none;
-    }
+    .cta-button,
     .cta-arrow {
       transition: none;
       animation: none !important;

@@ -58,6 +58,70 @@ a {
   color: rgb(var(--color-content));
 }
 
+/* ---------------------------------------------------------------------------
+ * Degradados de marca (paleta A). Son los únicos degradados del sitio:
+ * cada uno tiene un uso fijo y sale de los tokens, así funciona en claro/oscuro.
+ * ------------------------------------------------------------------------- */
+
+/* Portadas de casos, blog y tarjetas de marca */
+.bg-brand-gradient {
+  background: linear-gradient(135deg, rgb(var(--color-primary)) 0%, rgb(var(--color-primary-deep)) 100%);
+}
+
+/* Bloques CTA oscuros (con botón de WhatsApp): azul noche + brillo rojo suave */
+.cta-panel {
+  background:
+    radial-gradient(90% 120% at 100% 0%, rgb(var(--color-accent) / 0.26), transparent 60%),
+    linear-gradient(135deg, rgb(var(--color-secondary)) 0%, rgb(var(--color-secondary-lift)) 100%);
+  border: 1px solid rgb(255 255 255 / 0.08);
+  color: #fff;
+}
+
+/* Velo sobre foto o video en los héroes */
+.hero-veil {
+  background: linear-gradient(
+    90deg,
+    rgb(var(--color-secondary) / 0.9) 0%,
+    rgb(var(--color-secondary) / 0.62) 55%,
+    rgb(var(--color-secondary) / 0.3) 100%
+  );
+}
+
+/* Franja para alternar secciones: entra y sale suave, sin bordes duros */
+.section-band {
+  background: linear-gradient(
+    180deg,
+    rgb(var(--color-surface)) 0%,
+    rgb(var(--color-surface-strong)) 14%,
+    rgb(var(--color-surface-strong)) 86%,
+    rgb(var(--color-surface)) 100%
+  );
+}
+
+/* Tarjeta destacada (plan recomendado): sin degradado, borde más marcado y sombra */
+.card-featured {
+  border-color: rgb(var(--color-content) / 0.22) !important;
+  box-shadow: 0 1px 2px rgb(13 20 33 / 0.06), 0 12px 28px -10px rgb(13 20 33 / 0.18);
+}
+.dark .card-featured {
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 14px 32px -12px rgb(0 0 0 / 0.75);
+}
+
+/* Etiqueta pequeña roja ("Más elegido", "Recomendado") */
+.badge-accent {
+  @apply inline-flex w-fit items-center rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.12em];
+  color: rgb(var(--color-accent-ink));
+  background: rgb(var(--color-accent-ink) / 0.1);
+}
+
+/* Etiqueta neutra (tipo de proyecto, categoría) */
+.chip {
+  @apply inline-flex w-fit items-center rounded-full border px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] md:text-[11px];
+  color: rgb(var(--color-muted));
+  border-color: rgb(var(--color-border));
+  background: rgb(var(--color-surface));
+}
+
 .pill {
   @apply inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm;
   background: rgb(var(--color-pill) / var(--alpha-pill));
@@ -78,9 +142,9 @@ a {
 }
 
 .prose :where(a):not(:where([class~="not-prose"] *)) {
-  color: rgb(var(--color-highlight));
+  color: rgb(var(--color-link));
   text-decoration: underline;
-  text-decoration-color: rgb(var(--color-highlight) / 0.4);
+  text-decoration-color: rgb(var(--color-link) / 0.4);
   text-underline-offset: 3px;
 }
 
@@ -170,7 +234,7 @@ a {
   @apply mt-4;
 }
 .article-body a:not(.not-prose *) {
-  @apply font-medium text-accent underline decoration-accent/30 underline-offset-4 transition hover:decoration-accent dark:text-highlight dark:decoration-highlight/30;
+  @apply font-medium text-link underline decoration-link/30 underline-offset-4 transition hover:decoration-link;
 }
 .article-body strong {
   @apply font-semibold text-content;
@@ -180,7 +244,7 @@ a {
   @apply space-y-2 pl-6;
 }
 .article-body ul {
-  @apply list-disc marker:text-accent dark:marker:text-highlight;
+  @apply list-disc marker:text-accent-ink;
 }
 .article-body ol {
   @apply list-decimal marker:font-semibold marker:text-muted;

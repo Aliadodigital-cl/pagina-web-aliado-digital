@@ -45,7 +45,7 @@ const whatsappUrl = buildWhatsAppLink(
 <section id={sectionId} class="relative py-16 lg:py-24">
   <!-- Background Gradient -->
   <div
-    class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-slate-100 to-transparent dark:from-slate-900/80"
+    class="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-surface-strong to-transparent"
   >
   </div>
 
@@ -57,13 +57,13 @@ const whatsappUrl = buildWhatsAppLink(
 
       <!-- Title -->
       <h2
-        class="text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-5xl"
+        class="text-4xl font-bold tracking-tight text-content sm:text-5xl"
       >
         {content.title}
       </h2>
 
       <!-- Description -->
-      <p class="mt-4 text-lg text-slate-600 dark:text-white/60">
+      <p class="mt-4 text-lg text-muted">
         {content.description}
       </p>
 
@@ -75,7 +75,7 @@ const whatsappUrl = buildWhatsAppLink(
             target="_blank"
             rel="noopener noreferrer"
             aria-label={primaryCtaLabel}
-            class="inline-flex min-w-[240px] items-center justify-center gap-2 rounded-full bg-[#25D366] px-8 py-4 text-base font-semibold text-white shadow-lg transition-transform duration-200 hover:scale-105 dark:shadow-emerald-500/20 sm:min-w-[260px]"
+            class="inline-flex min-w-[240px] items-center justify-center gap-2 rounded-full bg-whatsapp px-8 py-4 text-base font-semibold text-white shadow-lg transition-transform duration-200 hover:scale-105 sm:min-w-[260px]"
           >
             <Icon name="simple-icons:whatsapp" class="h-5 w-5" />
             <span>{primaryCtaLabel}</span>
@@ -85,7 +85,7 @@ const whatsappUrl = buildWhatsAppLink(
             type="button"
             disabled
             aria-label="WhatsApp no disponible"
-            class="inline-flex min-w-[240px] cursor-not-allowed items-center justify-center gap-2 rounded-full bg-[#25D366]/60 px-8 py-4 text-base font-semibold text-white/90 shadow-lg sm:min-w-[260px]"
+            class="inline-flex min-w-[240px] cursor-not-allowed items-center justify-center gap-2 rounded-full bg-whatsapp/60 px-8 py-4 text-base font-semibold text-white/90 shadow-lg sm:min-w-[260px]"
           >
             <Icon name="simple-icons:whatsapp" class="h-5 w-5" />
             <span>{primaryCtaLabel}</span>
@@ -95,7 +95,7 @@ const whatsappUrl = buildWhatsAppLink(
           href={secondaryCtaHref}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex min-w-[240px] items-center justify-center gap-2 rounded-full bg-primary px-8 py-4 text-base font-semibold text-contrast shadow-lg shadow-primary/20 transition-all duration-200 hover:scale-105 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-highlight/30 sm:min-w-[260px]"
+          class="inline-flex min-w-[240px] items-center justify-center gap-2 rounded-full bg-primary px-8 py-4 text-base font-semibold text-contrast shadow-lg shadow-primary/20 transition-all duration-200 hover:scale-105 hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 sm:min-w-[260px]"
         >
           <Icon name="lucide:clipboard-check" class="h-5 w-5" aria-hidden="true" />
           <span>{secondaryCtaLabel}</span>
@@ -104,7 +104,7 @@ const whatsappUrl = buildWhatsAppLink(
 
       <!-- Social Links -->
       <div class="mt-12">
-        <p class="text-sm font-semibold text-slate-500 dark:text-white/40">
+        <p class="text-sm font-semibold text-muted">
           Encuéntranos en nuestras redes
         </p>
         <div class="mt-4 flex justify-center gap-6">
@@ -115,7 +115,7 @@ const whatsappUrl = buildWhatsAppLink(
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Visitar nuestro perfil de ${link.name}`}
-                class="text-slate-500 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+                class="text-muted transition-colors hover:text-content"
               >
                 <Icon name={link.icon} class="h-6 w-6" />
               </a>

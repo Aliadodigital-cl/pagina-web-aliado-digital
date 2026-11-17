@@ -1,19 +1,26 @@
+// Paleta A "Institucional": azul sobrio + rojo carmín como secundario (logo azul/rojo).
+// Fondos usan los tokens "fill" (primary, accent); textos de color usan los "ink"
+// (link, accent-ink), que en oscuro suben de luminosidad para leerse sobre negro.
 const themes = {
   light: {
     surface: "246 247 249",
-    surfaceStrong: "231 235 242",
+    surfaceStrong: "235 238 243",
     card: "255 255 255",
     cardAlpha: "1",
     border: "218 224 236",
     content: "13 20 33",
     muted: "88 102 130",
-    pill: "235 241 249",
+    pill: "238 241 246",
     pillAlpha: "1",
     pillBorder: "218 224 236",
-    primary: "20 76 167",
-    secondary: "10 18 32",
-    accent: "9 125 127",
-    highlight: "122 207 214",
+    primary: "29 78 158",
+    primaryDeep: "20 47 99",
+    link: "29 78 158",
+    secondary: "15 26 46",
+    secondaryLift: "26 50 99",
+    accent: "180 35 52",
+    accentInk: "180 35 52",
+    whatsapp: "23 140 74",
     contrast: "255 255 255"
   },
   dark: {
@@ -27,10 +34,14 @@ const themes = {
     pill: "17 24 38",
     pillAlpha: "0.75",
     pillBorder: "37 48 70",
-    primary: "45 108 201",
-    secondary: "9 12 18",
-    accent: "13 159 164",
-    highlight: "125 216 224",
+    primary: "42 95 184",
+    primaryDeep: "21 44 92",
+    link: "125 162 240",
+    secondary: "18 28 51",
+    secondaryLift: "29 53 102",
+    accent: "196 50 67",
+    accentInk: "238 122 134",
+    whatsapp: "26 154 82",
     contrast: "255 255 255"
   }
 };
@@ -58,13 +69,18 @@ module.exports = {
         pill: withOpacity("--color-pill"),
         "pill-border": withOpacity("--color-pill-border"),
         primary: withOpacity("--color-primary"),
+        "primary-deep": withOpacity("--color-primary-deep"),
+        link: withOpacity("--color-link"),
         secondary: withOpacity("--color-secondary"),
+        "secondary-lift": withOpacity("--color-secondary-lift"),
         accent: withOpacity("--color-accent"),
-        highlight: withOpacity("--color-highlight"),
+        "accent-ink": withOpacity("--color-accent-ink"),
+        whatsapp: withOpacity("--color-whatsapp"),
         contrast: withOpacity("--color-contrast")
       },
       boxShadow: {
-        soft: "0 24px 60px rgba(15,23,42,0.08)"
+        soft: "0 24px 60px rgb(13 20 33 / 0.08)",
+        featured: "0 1px 2px rgb(13 20 33 / 0.06), 0 12px 28px -10px rgb(13 20 33 / 0.18)"
       }
     }
   },
@@ -82,9 +98,13 @@ module.exports = {
         "--alpha-pill": palette.pillAlpha ?? "1",
         "--color-pill-border": palette.pillBorder,
         "--color-primary": palette.primary,
+        "--color-primary-deep": palette.primaryDeep,
+        "--color-link": palette.link,
         "--color-secondary": palette.secondary,
+        "--color-secondary-lift": palette.secondaryLift,
         "--color-accent": palette.accent,
-        "--color-highlight": palette.highlight,
+        "--color-accent-ink": palette.accentInk,
+        "--color-whatsapp": palette.whatsapp,
         "--color-contrast": palette.contrast
       });
 
